@@ -1,9 +1,11 @@
 const express = require('express')
 const session = require('express-session')
 const mysql = require('mysql2')
+const bodyParser = require("body-parser")
 require("dotenv").config()
 
 
+// Database set up
 
 const db = mysql.createConnection({
   host: process.env.HOST,
@@ -16,11 +18,17 @@ db.connect((err) => {
   if (err) throw err
 });
 
+// Server set up
+
 const app = express()
 
 app.listen(process.env.PORT, () => {
   console.log('server on')
 })
+
+// Middleware for parsing data from the web pages
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const oneDay = 1000 * 60 * 60 * 24
 
@@ -37,15 +45,7 @@ function RenderList() {
 
 }
 
-app.get('/register', (req,res) => {
-
-})
-
 app.post('/register', (req,res) => {
-
-})
-
-app.get('/signin', (req,res) => {
 
 })
 
