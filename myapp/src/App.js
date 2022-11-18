@@ -19,6 +19,42 @@ function App() {
   }
 }
 
+function LandingPage() {
+
+}
+
+function UserPage() {
+  const [exercises, setExercises] = useState([])
+  const exerciseNameRef = useRef()
+  
+  return (
+    <>
+    <header>Workout Creator</header>
+    <a>
+      <div>Monday</div>
+    </a>
+    <a>
+      <div>Tuesday</div>
+    </a>
+    <a>
+      <div>Wednesday</div>
+    </a>
+    <a>
+      <div>Thursday</div>
+    </a>
+    <a>
+      <div>Friday</div>
+    </a>
+    <a>
+      <div onClick={createWorkout}>Saturday</div>
+    </a>
+    <a>
+      <div>Sunday</div>
+    </a>
+    </>
+  );
+}
+
 function Register() {
   const [emailState, setEmail] = useState()
   const [passState, setPass] = useState()
@@ -71,20 +107,7 @@ function SignIn() {
   
 }
 
-function LandingPage() {
 
-}
-
-function UserPage() {
-  const [exercises, setExercises] = useState([])
-  const exerciseNameRef = useRef()
-  
-  return (
-    <>
-
-    </>
-  );
-}
 
 
 export default App;
