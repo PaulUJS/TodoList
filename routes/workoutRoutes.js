@@ -1,4 +1,5 @@
 const express = require('express')
+const Workout = require('../models/workoutModel')
 
 const router = express.Router()
 
@@ -8,8 +9,17 @@ router.get('/:day', (req,res) => {
 })
 
 // Saves the workouts 
-router.post('/:day', (req,res) => {
+router.post('/:day', async (req,res) => {
+  const day = req.params['day']
+  const {name, weight, reps} = req.body
+  const userID = ''
 
+  try {
+    const workout = await Workout.create(day, name, weight, reps, userID)
+    res.status(200).json(workout)
+  } catch (error) {
+    res.status(400).json({error: error.message})
+  }
 })
 
 // Grabs specific workout

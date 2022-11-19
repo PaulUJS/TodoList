@@ -2,25 +2,37 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require("body-parser")
 const workoutRoutes = require('./routes/workoutRoutes')
+const mongoose = require('mongoose')
 require("dotenv").config()
 
 // Server set up
 
 const app = express()
 
-app.listen(process.env.PORT, () => {
-  console.log('server on')
-})
+// Database config
 
-// Middleware for parsing data from the web pages
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log('server on')
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+  })
+
+// Middleware
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Middleware
+
 app.use('/', (req,res,next) => {
   console.log(req.path, req.method)
   next()
 })
+
+// Session management
 
 const oneDay = 1000 * 60 * 60 * 24
 
