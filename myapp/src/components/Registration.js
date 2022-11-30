@@ -35,14 +35,14 @@ export default function Registration() {
 
   return (
   <>
-    <h1>Create Account</h1>
-    <label>
-      <input type='email' placeholde='Email' ref={emailRef} required />
-    </label>
-    <label>
-      <input type='password' placeholder='Passowrd' ref={passRef} required />
-    </label>
-    <button>Register</button>
+    <form className='regi-form'>
+      <h1>Create Account</h1>
+      <label>Enter your Email</label>
+        <input type='email' placeholde='Email' ref={emailRef} className='email' required />
+      <label>Enter your Password</label>
+        <input type='password' placeholder='Password' ref={passRef} className='password' required />
+      <button>Register</button>
+    </form>
   </>
   )
 }
