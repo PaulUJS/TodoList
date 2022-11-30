@@ -1,25 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid';
+import { Routes, Route } from 'react-router-dom';
 
+import Navbar from './Navbar';
+import Signin from './Signin';
 import Userpage from './components/Userpage';
 import Main from './components/Main';
 import Registration from './components/Registration';
 
-// useRef hook allows you to reference input data from the page in a variable
-// useState allows you to store the data from a page in state
-// useEffect hook 
-
 function App() {
-  if (authenticated) {
-    return (
-      <Userpage/>
-    )
-  }
-  else {
-    return (
-      <Main/>
-    )
-  }
+  return (
+    <>
+      <Navbar/>
+      <div className='container'>
+        <Routes>
+          <Route path='/' element={<Main/>} />
+          <Route path='/signin' element={<Signin/>} />
+          <Route path='/register' element={<Registration/>} />
+          <Route path='/userpage' element={<Userpage/>} />
+        </Routes>
+      </div>
+    </>
+  )
 }
 
 
