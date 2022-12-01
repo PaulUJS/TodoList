@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Registration() {
+  /*
   const [emailState, setEmail] = useState()
   const [passState, setPass] = useState()
 
@@ -17,7 +18,7 @@ export default function Registration() {
     emailRef.current.value = null
     passRef.current.value = null
   }
-
+  
   useEffect(() => {
     const url = 'http://localhost:3000/register';
 
@@ -33,14 +34,16 @@ export default function Registration() {
     fetchData()
   }, [])
 
+  */
+
   return (
   <>
     <form className='regi-form'>
       <h1>Create Account</h1>
       <label>Enter your Email</label>
-        <input type='email' placeholde='Email' ref={emailRef} className='email' required />
+        <input type='email' placeholde='Email' className='email' required />
       <label>Enter your Password</label>
-        <input type='password' placeholder='Password' ref={passRef} className='password' required />
+        <input type='password' placeholder='Password' className='password' required />
       <button>Register</button>
     </form>
   </>

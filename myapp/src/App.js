@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from './Navbar';
-import Signin from './Signin';
+import Navbar from './components/Navbar';
+import Signin from './components/Signin';
 import Userpage from './components/Userpage';
 import Main from './components/Main';
 import Registration from './components/Registration';

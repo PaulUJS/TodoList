@@ -2,9 +2,10 @@ import React from 'react'
 
 export default function Userpage() {
   
+  /*
   const [exercises, setExercises] = useState([])
   const exerciseNameRef = useRef()
-  
+  */
 
   return (
     <>
@@ -25,7 +26,7 @@ export default function Userpage() {
         <div>Friday</div>
       </a>
       <a>
-        <div onClick={createWorkout}>Saturday</div>
+        <div>Saturday</div>
       </a>
       <a>
         <div>Sunday</div>
