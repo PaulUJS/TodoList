@@ -2,15 +2,9 @@ import React from 'react'
 import Navbar from './Navbar';
 
 export default function Userpage() {
-  
-  /*
-  const [exercises, setExercises] = useState([])
-  const exerciseNameRef = useRef()
-  */
 
   return (
     <>
-      <Navbar/>
       <header>Workout Creator</header>
       <a>
         <div>Monday</div>
