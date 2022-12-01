@@ -1,8 +1,10 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 export default function Signin() {
   return (
     <>
+      <Navbar/>
       <form className='signin-form'>
         <h1>Sign In</h1>
         <label>Enter your Email</label>

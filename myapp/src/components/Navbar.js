@@ -1,31 +1,36 @@
 import React from 'react'
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+
+import Registration from './Registration';
+import Signin from './Signin';
+import Main from './Main';
 
 export default function Navbar() {
-  return (
-    <>
-      <nav className='nav'>
-        <Link to='/' className='site-title'>WorkoutBuddy</Link>
+  if (Authenticated) {
+    return (
+      <>
+        <nav className='nav'>
+          <a href={<Main/>} className='site-title'>WorkoutBuddy</a>
 
-        <ul>
-          <CustomLink to='/register'><button className='nav-button'>Sign Up</button></CustomLink>
-          <CustomLink to='/signin'><button className='nav-button'>Log In</button></CustomLink>
-        </ul>
-      </nav>
-    </>
-  )
-}
-
-function CustomLink(to, children, ...props) {
-  const resolvedPath = useResolvedPath(to);
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true})
+          <ul>
+            <a href=''><button className='nav-button'>Sign Out</button></a>
+            <a href=''><button className='nav-button'>Account</button></a>
+          </ul>
+        </nav>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <nav className='nav'>
+          <a href={<Main/>} className='site-title'>WorkoutBuddy</a>
   
-  return (
-    <li className={resolvedPath === to ? 'active' : ''}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
-  )
-
+          <ul>
+            <a href={<Registration/>}><button className='nav-button'>Sign Up</button></a>
+            <a href={<Signin/>}><button className='nav-button'>Log In</button></a>
+          </ul>
+        </nav>
+      </>
+    )
+  }
 }
+

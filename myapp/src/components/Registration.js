@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 export default function Registration() {
   /*
@@ -38,6 +39,7 @@ export default function Registration() {
 
   return (
   <>
+    <Navbar/>
     <form className='regi-form'>
       <h1>Create Account</h1>
       <label>Enter your Email</label>

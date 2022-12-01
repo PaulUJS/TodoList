@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from './Navbar';
 
 export default function Userpage() {
   
@@ -9,6 +10,7 @@ export default function Userpage() {
 
   return (
     <>
+      <Navbar/>
       <header>Workout Creator</header>
       <a>
         <div>Monday</div>
