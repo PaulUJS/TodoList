@@ -1,32 +1,20 @@
 import React from 'react'
-import Navbar from './Navbar';
+
+import WorkoutInput from './WorkoutInput';
+import Workouts from './Workouts';
 
 export default function Userpage() {
 
   return (
     <>
-      <header>Workout Creator</header>
-      <a>
-        <div>Monday</div>
-      </a>
-      <a>
-        <div>Tuesday</div>
-      </a>
-      <a>
-        <div>Wednesday</div>
-      </a>
-      <a>
-        <div>Thursday</div>
-      </a>
-      <a>
-        <div>Friday</div>
-      </a>
-      <a>
-        <div>Saturday</div>
-      </a>
-      <a>
-        <div>Sunday</div>
-      </a>
+      <div className='user-container'>
+        <h1>Workout Center</h1>
+        <div>
+          <h2>Monday</h2>
+          <Workouts/>
+          <button>Add an exercise</button>
+        </div>
+      </div>
     </>
   )
 }
