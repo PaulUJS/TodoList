@@ -13,7 +13,12 @@ export default function Userpage() {
   const exerciseRepsRef = useRef();
   const exerciseWeightRef = useRef();
 
+  const [isShown, setIsShown] = useState(false);
   const [exercises, setExercises] = useState([]);
+
+  function showAddExercise(e) {
+    setIsShown(current => !current);
+  };
 
   function handleAddExercise(e) {
     const name = exerciseNameRef.current.value;
@@ -43,22 +48,25 @@ export default function Userpage() {
 
   return (
     <>
-      <div className='user-container'>
-        <div>
-            <WorkoutList exercises={exercises}/>
-            <label>Enter exercise name</label>
-            <input ref={exerciseNameRef} type='text' required/>
+    <div className='user-container'>
+      <h2>Monday</h2>
+      <WorkoutList exercises={exercises}/>
+      <button  className='input-toggle' onClick={showAddExercise}>Add Exercise</button>
+      {isShown && (
+      <div>
+        <label>Enter exercise name</label>
+        <input ref={exerciseNameRef} type='text' required/>
 
-            <label>Enter amount of reps</label>
-            <input ref={exerciseRepsRef} required/>
+        <label>Enter amount of reps</label>
+        <input ref={exerciseRepsRef} type='number' required/>
 
-            <label>Enter exercise weight</label>
-            <input ref={exerciseWeightRef} required/>
+        <label>Enter exercise weight</label>
+        <input ref={exerciseWeightRef} type='number' required/>
 
-            <button type='submit' onClick={handleAddExercise}>Create Exercise</button>
-
-        </div>
+        <button type='submit' onClick={handleAddExercise}>Submit Exercise</button>
       </div>
+      )}
+    </div>      
     </>
   )
 }

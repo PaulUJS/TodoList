@@ -157,3 +157,27 @@ body {
   width: 50vh;
 }
 
+/* Userpage Component */
+
+.user-container {
+  display: flex;
+  
+  flex-direction: column;
+
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+.user-container h2 {
+  align-self: flex-start;
+}
+
+.user-container label {
+  margin: 5px;
+}
+
+.input-toggle {
+  height: 22px;
+  width: 112px;
+  align-self: flex-end;
+}
