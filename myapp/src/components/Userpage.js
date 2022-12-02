@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState, useRef } from 'react'
 
 import WorkoutInput from './WorkoutInput';
-import Workouts from './Workouts';
+import WorkoutList from './WorkoutList';
 
 export default function Userpage() {
+  const [exercises, setExercises] = useState([]);
+
+
+  function handleAddExercise(e) {
+    
+  };
 
   return (
     <>
@@ -11,7 +17,7 @@ export default function Userpage() {
         <h1>Workout Center</h1>
         <div>
           <h2>Monday</h2>
-          <Workouts/>
+          <WorkoutList exercise={exercises}/>
           <button>Add an exercise</button>
         </div>
       </div>
