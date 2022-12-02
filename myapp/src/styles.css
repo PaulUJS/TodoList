@@ -161,23 +161,66 @@ body {
 
 .user-container {
   display: flex;
-  
   flex-direction: column;
-
+  
   min-height: 100vh;
   min-width: 100vh;
 }
 
-.user-container h2 {
+.day-wrapper {
+  display: flex;
+
   align-self: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  border: 1px solid black;
+  margin: 10px;
+
+  height: fit-content;
+  width: 70%;
 }
 
-.user-container label {
+.day-wrapper h2 {
+  align-self: flex-start;
+  margin-left: 25px;
+}
+
+.day-wrapper p {
+  margin-left: 30px;
+}
+
+.day-wrapper label {
   margin: 5px;
+}
+
+.exercise-input {
+  border: 1px solid black;
+  width: 100%;
+}
+
+.exercise-input button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.exercise-input label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.exercise-input p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .input-toggle {
   height: 22px;
   width: 112px;
   align-self: flex-end;
+  margin: 15px;
 }
+
