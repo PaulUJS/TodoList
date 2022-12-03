@@ -46,15 +46,27 @@ function Day({ day }) {
     setIsShown(current => !current);
   };
 
-  function handleAddExercise(e) {
+  async function handleAddExercise(e) {
     const name = exerciseNameRef.current.value;
     const reps = exerciseRepsRef.current.value;
     const weight = exerciseWeightRef.current.value;
 
+    // Sets the state of the exercises relative to the last input
     if (name === '') return
     setExercises(prevExercises => {
       return [...prevExercises, {id: nanoid(), day: JSON.stringify(day), name: name, reps: reps, weight: weight}]
     })
+
+    // Sends a post request to the backend api to add the workout to the db
+    const response = await fetch(`/http://localhost:3000/api/user/workout/${JSON.stringify(day)}`,{
+      method: post,
+      body: JSON.stringify(exercises),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const json = await response.json();
 
     exerciseNameRef.current.value = null;
     exerciseRepsRef.current.value = null;
@@ -67,9 +79,17 @@ function Day({ day }) {
   useEffect(() => {
     const storedExercises = JSON.parse(localStorage.getItem(LS_KEY));
 
-    if (storedExercises) {
-      setExercises(storedExercises)
+    // Grabs the exercises from the db and displays them on page load
+    async function fetchExercises() {
+      const response = await fetch(`/http://localhost:3000/api/user/workout/${JSON.stringify(day)}`);
+      const json = await response.json();
+    };
+
+    if (response.ok) {
+      setExercises(json)
     }
+
+    fetchExercises();
   }, [])
 
   useEffect(() => {
@@ -81,7 +101,7 @@ function Day({ day }) {
       <WorkoutList exercises={exercises}/>
         <button  className='input-toggle' onClick={showAddExercise}>Add Exercise</button>
         {isShown && (
-        <div className='exercise-input'>
+        <form className='exercise-input'>
           <label>Enter exercise name</label>
           <input ref={exerciseNameRef} type='text' required/>
 
@@ -92,7 +112,7 @@ function Day({ day }) {
           <input ref={exerciseWeightRef} type='number' required/>
 
           <button type='submit' onClick={handleAddExercise}>Submit Exercise</button>
-        </div>
+        </form>
         )}
     </>
   )
