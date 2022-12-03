@@ -6,50 +6,39 @@ import WorkoutList from './WorkoutList';
 const LS_KEY =  'workoutApp.exercise';
 
 export default function Userpage() {
+
+  const days = [
+    'Monday', 
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
+  ]
+
   return (
-    <>
-    <div className='user-container'>
-
-
-        <div className='day-wrapper'>
-          <h2>Monday</h2>
-          <Day/>
-        </div>
-        <div className='day-wrapper'>
-          <h2>Tuesday</h2>
-          <Day/>
-        </div>
-        <div className='day-wrapper'>
-          <h2>Wednesday</h2>
-          <Day/>
-        </div>    
-        <div className='day-wrapper'>
-          <h2>Thursday</h2>
-          <Day/>
-        </div>    
-        <div className='day-wrapper'>
-          <h2>Friday</h2>
-          <Day/>
-        </div>    
-        <div className='day-wrapper'>
-          <h2>Saturday</h2>
-          <Day/>
-        </div>    
-        <div className='day-wrapper'>
-          <h2>Sunday</h2>
-          <Day/>
-        </div>    
-
-    </div>      
-    </>
+    days.map(day => {
+      return (
+        <>
+          <h2>{day}</h2>
+          <Day day={day}/>
+        </>
+      )
+    })
   )
 }
 
-function Day() {
+function Day({ day }) {
+
+  // useRef allows me to keep values through renders
   const exerciseNameRef = useRef();
   const exerciseRepsRef = useRef();
   const exerciseWeightRef = useRef();
 
+  // useState allows use to track the state of the app
+  // The state is just data that needs to be tracked like inputs
+  // set is setting the state to reflect the state when it's called, basically updating it
   const [isShown, setIsShown] = useState(false);
   const [exercises, setExercises] = useState([]);
 
@@ -64,7 +53,7 @@ function Day() {
 
     if (name === '') return
     setExercises(prevExercises => {
-      return [...prevExercises, {id: nanoid(), name: name, reps: reps, weight: weight}]
+      return [...prevExercises, {id: nanoid(), day: JSON.stringify(day), name: name, reps: reps, weight: weight}]
     })
 
     exerciseNameRef.current.value = null;
@@ -72,8 +61,12 @@ function Day() {
     exerciseWeightRef.current.value = null;
   };
 
+  // useEffect allows me to peform side effects in components
+  // This includes fetching data, updating dom, etc
+  // useEffect accepts 2 arguments, the second is optional
   useEffect(() => {
     const storedExercises = JSON.parse(localStorage.getItem(LS_KEY));
+
     if (storedExercises) {
       setExercises(storedExercises)
     }
