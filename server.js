@@ -2,6 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require("body-parser")
 const workoutRoutes = require('./routes/workoutRoutes')
+const workoutController = require('./controllers/workoutController')
 const mongoose = require('mongoose')
 require("dotenv").config()
 
@@ -46,9 +47,7 @@ app.use(
 )
 
 // Routes
-app.use('/api/user', workoutRoutes)
-
-app.use('/api/user/workouts', workoutRoutes)
+app.use('/api/workouts', workoutRoutes)
 
 // Authentication
 
