@@ -58,8 +58,8 @@ function Day({ day }) {
     })
 
     // Sends a post request to the backend api to add the workout to the db
-    const response = await fetch(`/http://localhost:3000/api/user/workout/${JSON.stringify(day)}`,{
-      method: post,
+    const response = await fetch(`/api/workouts/${JSON.stringify(day)}`,{
+      method: 'POST',
       body: JSON.stringify(exercises),
       headers: {
         'Content-Type': 'application/json'
@@ -77,17 +77,15 @@ function Day({ day }) {
   // This includes fetching data, updating dom, etc
   // useEffect accepts 2 arguments, the second is optional
   useEffect(() => {
-    const storedExercises = JSON.parse(localStorage.getItem(LS_KEY));
 
     // Grabs the exercises from the db and displays them on page load
     async function fetchExercises() {
-      const response = await fetch(`/http://localhost:3000/api/user/workout/${JSON.stringify(day)}`);
+      const response = await fetch(`/api/workouts/${JSON.stringify(day)}`);
       const json = await response.json();
+      if (response.ok) {
+        setExercises(json)
+      }
     };
-
-    if (response.ok) {
-      setExercises(json)
-    }
 
     fetchExercises();
   }, [])
