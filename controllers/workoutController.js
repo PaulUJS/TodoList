@@ -77,10 +77,15 @@ async function deleteWorkout(req,res) {
   res.status(200).json(workouts);
 }
 
+async function deleteAll(req,res) {
+  const workouts = await Workout.deleteMany()
+}
+
 module.exports = {
   getWorkouts,
   getSingleWorkout,
   createWorkout,
   deleteWorkout,
-  updateWorkout
+  updateWorkout,
+  deleteAll
 }

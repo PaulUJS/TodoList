@@ -4,12 +4,15 @@ const bodyParser = require("body-parser")
 const workoutRoutes = require('./routes/workoutRoutes')
 const workoutController = require('./controllers/workoutController')
 const mongoose = require('mongoose')
+const cors = require('cors')
 require("dotenv").config()
 
 // Server set up
 
+
 const app = express()
 
+app.use(cors())
 // Database config
 
 mongoose.connect(process.env.MONGO_URL)

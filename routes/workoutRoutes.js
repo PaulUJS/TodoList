@@ -5,7 +5,8 @@ const {
   getSingleWorkout,
   createWorkout,
   deleteWorkout,
-  updateWorkout
+  updateWorkout,
+  deleteAll
 } = require('../controllers/workoutController');
 const router = express.Router()
 
@@ -22,5 +23,5 @@ router.delete('/:id', deleteWorkout)
 router.get('/:id',getSingleWorkout)
 
 
-
+router.delete('/', deleteAll)
 module.exports = router
