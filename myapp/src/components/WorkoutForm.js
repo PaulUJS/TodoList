@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 
-export default function WorkoutForm() {
+export default function WorkoutForm({ day }) {
   const [name, setName] = useState('');
   const [weight, setWeight] = useState('');
   const [reps, setReps] = useState('');
-  const day = 'tuesday'
   const [error, setError] = useState(null);
 
   async function sendWorkout(e) {
@@ -38,7 +37,7 @@ export default function WorkoutForm() {
 
   return (
     <>
-      <form className='exercise-input'>
+      <form className='exercise-input' onSubmit={sendWorkout}>
         <label>Enter exercise name</label>
         <input onChange={(e) => setName(e.target.value)} value={name} type='text' required/>
 
@@ -48,7 +47,7 @@ export default function WorkoutForm() {
         <label>Enter exercise weight</label>
         <input onChange={(e) => setWeight(e.target.value)} value={weight} type='number' required/>
 
-        <button type='submit' onClick={sendWorkout}>Submit Exercise</button>
+        <button type='submit'>Submit Exercise</button>
         {error && <div className='error'>{error}</div>}
       </form>
     </>

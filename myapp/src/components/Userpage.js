@@ -6,6 +6,12 @@ const LS_KEY =  'workoutApp.exercise';
 
 export default function Userpage() {
 
+  const [isShown, setIsShown] = useState(false);
+
+  function showAddExercise(e) {
+    setIsShown(current => !current);
+  };
+
   const days = [
     'Monday', 
     'Tuesday',
@@ -16,15 +22,22 @@ export default function Userpage() {
     'Sunday'
   ]
 
+
   return (
-    days.map(day => {
-      return (
-        <>
-          <h2>{day}</h2>
-          <Day day={day}/>
-        </>
-      )
-    })
+    <>    
+      <div className='day-container'>
+        <div className='title-wrapper'>
+          <h2>Monday</h2>
+          <button className='input-toggle' onClick={showAddExercise}>Display</button>
+        </div>
+        {isShown && (
+          <div className='day-wrapper'>
+          <Day day='Monday'/>
+          </div>
+        )} 
+      </div>
+      
+    </>
   )
 }
 
@@ -57,16 +70,13 @@ function Day({ day }) {
     fetchExercises();
   }, [])
 
-  useEffect(() => {
-    localStorage.setItem(LS_KEY, JSON.stringify(exercises))
-  }, [exercises])
-
+  
   return (
     <>
       <WorkoutList exercises={exercises}/>
         <button  className='input-toggle' onClick={showAddExercise}>Add Exercise</button>
         {isShown && (
-          <WorkoutForm/>
+          <WorkoutForm day={day}/>
         )}
     </>
   )

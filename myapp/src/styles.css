@@ -159,12 +159,30 @@ body {
 
 /* Userpage Component */
 
-.user-container {
+.day-container {
   display: flex;
   flex-direction: column;
   
   min-height: 100vh;
   min-width: 100vh;
+}
+
+.title-wrapper {
+  display: flex;
+  align-self: flex-start;
+  flex-direction: column;
+
+  border: 0.5px solid black;
+  margin: 10px;
+
+  width: 25%;
+}
+
+.title-wrapper h2 {
+  margin-left: 25px;
+  margin-right: 200px;
+  margin-bottom: 20px;
+  align-self: flex-start;
 }
 
 .day-wrapper {
@@ -174,8 +192,7 @@ body {
   justify-content: flex-start;
   flex-direction: column;
 
-  border: 1px solid black;
-  margin: 10px;
+  margin-left: 15px;
 
   height: fit-content;
   width: 70%;
@@ -183,15 +200,32 @@ body {
 
 .day-wrapper h2 {
   align-self: flex-start;
+  
   margin-left: 25px;
 }
 
 .day-wrapper p {
-  margin-left: 30px;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 5px;
+  color: #333;
 }
 
-.day-wrapper label {
-  margin: 5px;
+.workout-label {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+
+  font-size: 20px;
+  color: #09106d;
+}
+
+
+.workout-wrapper {
+  border: 0.25px solid black;
+
+  margin: 10px;
 }
 
 .exercise-input {
@@ -206,9 +240,7 @@ body {
 }
 
 .exercise-input label {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin: 10px;
 }
 
 .exercise-input p {
@@ -217,10 +249,19 @@ body {
   margin-left: 10px;
 }
 
+.info-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+
+}
+
 .input-toggle {
   height: 22px;
   width: 112px;
   align-self: flex-end;
-  margin: 15px;
+  margin-bottom: 15px;
+  margin-right: 15px;
 }
 
