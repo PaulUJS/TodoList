@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Signin from './components/Signin';
-import Userpage from './components/Userpage';
+import Userpage from './pages/Userpage';
 import Main from './components/Main';
 import Registration from './components/Registration';
 
