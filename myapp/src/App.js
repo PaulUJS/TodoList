@@ -5,10 +5,10 @@ import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
-import Signin from './components/Signin';
+import Signin from './pages/Signin';
 import Userpage from './pages/Userpage';
-import Main from './components/Main';
-import Registration from './components/Registration';
+import Main from './pages/Main';
+import Registration from './pages/Registration';
 
 function App() {
 

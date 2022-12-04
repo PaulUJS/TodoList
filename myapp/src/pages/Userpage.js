@@ -47,7 +47,7 @@ function Day({ day }) {
   // The state is just data that needs to be tracked like inputs
   // set is setting the state to reflect the state when it's called, basically updating it
   const [isShown, setIsShown] = useState(false);
-  const { workouts, dispatch } = useWorkoutsContext();
+  const {workouts, dispatch} = useWorkoutsContext();
   
   // Updates the isShown state to make the div associated toggle 
   function showAddExercise(e) {
@@ -77,7 +77,7 @@ function Day({ day }) {
   
   return (
     <>
-      <WorkoutList exercises={workouts}/>
+      <WorkoutList workouts={workouts}/>
         <button  className='input-toggle' onClick={showAddExercise}>Add Exercise</button>
         {isShown && (
           <WorkoutForm day={day}/>

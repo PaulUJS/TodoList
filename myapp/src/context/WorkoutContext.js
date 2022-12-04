@@ -20,7 +20,7 @@ export function workoutsReducer(state, action) {
 }
 
 // This components wraps the app component allowing all components to access the context
-export function ContextProvider({ children }) {
+export function WorkoutsContextProvider({ children }) {
   // Dispatch updates the state object
   const [state, dispatch] = useReducer(workoutsReducer, {
     workouts: null
