@@ -10,7 +10,7 @@ export default function Workout({ workout }) {
       </div>
       
       <div className='info-wrapper'>
-        <label>Exercise Reps:</label>
+        <label className='workout-label'>Exercise Reps:</label>
         <p>{workout.reps}</p>
       </div>
     </div>

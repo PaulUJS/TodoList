@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 
 import WorkoutList from '../components/WorkoutList';
 import WorkoutForm from '../components/WorkoutForm';
-import useWorkoutsContext from '../hooks/useWorkoutsContext';
 
 export default function Userpage() {
 
@@ -31,9 +30,9 @@ export default function Userpage() {
           <button className='input-toggle' onClick={showAddExercise}>Display</button>
         </div>
         {isShown && (
-          <div className='day-wrapper'>
-          <Day day='Monday'/>
-          </div>
+            <div className='day-wrapper'>
+            <Day day='Monday'/>
+            </div>
         )} 
       </div>
       
@@ -47,8 +46,8 @@ function Day({ day }) {
   // The state is just data that needs to be tracked like inputs
   // set is setting the state to reflect the state when it's called, basically updating it
   const [isShown, setIsShown] = useState(false);
-  const {workouts, dispatch} = useWorkoutsContext();
-  
+  const [exercises, setExercises] = useState([]);
+
   // Updates the isShown state to make the div associated toggle 
   function showAddExercise(e) {
     setIsShown(current => !current);
@@ -67,17 +66,16 @@ function Day({ day }) {
 
       if (response.ok) {
         // Updates the context state of workouts with set_workouts
-        dispatch({type: 'SET_WORKOUTS', payload: json});
+        setExercises(json);
       }
     };
 
     fetchExercises();
   }, [])
 
-  
   return (
     <>
-      <WorkoutList workouts={workouts}/>
+      <WorkoutList exercises={exercises}/>
         <button  className='input-toggle' onClick={showAddExercise}>Add Exercise</button>
         {isShown && (
           <WorkoutForm day={day}/>

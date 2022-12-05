@@ -1,5 +1,6 @@
 const express = require('express');
 const Workout = require('../models/workoutModel');
+
 const {
   getWorkouts,
   getSingleWorkout,
@@ -8,20 +9,19 @@ const {
   updateWorkout,
   deleteAll
 } = require('../controllers/workoutController');
-const router = express.Router()
 
-router.get('/', getWorkouts)
+const router = express.Router();
 
-router.post('/', createWorkout)
+router.get('/', getWorkouts);
 
-// Updates a workout
-router.put('/:id', updateWorkout)
+router.post('/', createWorkout);
 
-// Deletes a workout
-router.delete('/:id', deleteWorkout)
+router.put('/:id', updateWorkout);
 
-router.get('/:id',getSingleWorkout)
+router.delete('/:id', deleteWorkout);
 
+router.get('/:id',getSingleWorkout);
 
-router.delete('/', deleteAll)
-module.exports = router
+router.delete('/', deleteAll);
+
+module.exports = router;

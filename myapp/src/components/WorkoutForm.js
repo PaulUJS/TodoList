@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import useWorkoutsContext from '../hooks/useWorkoutsContext';
+const LS_KEY = 'workout.app.key';
 
 export default function WorkoutForm({ day }) {
-  const { dispatch } = useWorkoutsContext();
 
   const [name, setName] = useState('');
   const [weight, setWeight] = useState('');
   const [reps, setReps] = useState('');
   const [error, setError] = useState(null);
+  
 
   async function sendWorkout(e) {
     e.preventDefault();
 
-    const workout = {day, name, weight, reps}
+    const workout = {day, name, weight, reps};
 
     // Sends a post request to the backend api to add the workout to the db
     const response =  fetch('http://localhost:4000/api/workouts/',{
@@ -28,7 +28,7 @@ export default function WorkoutForm({ day }) {
 
     if (!response.ok) {
       setError(json.error);
-      console.log('error')
+      console.log('error');
     }
     if (response.ok) {
       setName('');
@@ -36,7 +36,6 @@ export default function WorkoutForm({ day }) {
       setReps('');
       setError(null);
       console.log('new workout added', json);
-      dispatch({type: 'CREATE_WORKOUT', payload: json})
     }
   }
 
