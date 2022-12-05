@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-const LS_KEY = 'workout.app.key';
-
 export default function WorkoutForm({ day }) {
 
   const [name, setName] = useState('');
@@ -16,7 +14,7 @@ export default function WorkoutForm({ day }) {
     const workout = {day, name, weight, reps};
 
     // Sends a post request to the backend api to add the workout to the db
-    const response =  fetch('http://localhost:4000/api/workouts/',{
+    const response = fetch('http://localhost:4000/api/workouts/', {
       method: 'POST',
       body: JSON.stringify(workout),
       headers: {

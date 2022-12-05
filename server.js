@@ -1,5 +1,4 @@
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require("body-parser");
 const workoutRoutes = require('./routes/workoutRoutes');
 const workoutController = require('./controllers/workoutController');
@@ -37,19 +36,6 @@ app.use('/', (req,res,next) => {
   console.log(req.path, req.method);
   next();
 });
-
-// Session management
-
-const oneDay = 1000 * 60 * 60 * 24;
-
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        saveUninitialized: true,
-        cookie: { maxAge: oneDay },
-        resave: false 
-    })
-);
 
 // Routes
 app.use('/api/workouts', workoutRoutes);

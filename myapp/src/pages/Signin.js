@@ -1,19 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar';
 
 export default function Signin() {
+  e.preventDefault();
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  async function validateUser(e) {
+    const userInfo = { email, password };
+
+    const response = fetch('http://localhost:4000/api/user/validate', {
+      method: 'POST',
+      body: JSON.stringify(userInfo),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const json =  await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      setEmail('');
+      setPassword('');
+      setError(null);
+    }
+  }
+
   return (
     <>
       <div className='signin-container'>
-        <form className='signin-form'>
+        <form className='signin-form' onSubmit={validateUser}>
           <h1>Sign In</h1>
           <label>Enter your Email</label>
-            <input placeholder='Email' type='email' required/>
+            <input onChange={(e) => setEmail(e.target.value)} placeholder='Email' type='email' required/>
           <label>Enter your Password</label>
-            <input placeholder='Password' type='password' required/>
-          <label>Re-Enter your Password</label>
-            <input placeholder='Password' type='password' required/>
+            <input onChange={(e) => setPassword(e.target.value)} placeholder='Password' type='password' required/>
           <button>Sign in</button>
+          {error && <div className='error'>{error}</div>}
         </form>
       </div>
       
