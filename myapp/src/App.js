@@ -1,7 +1,6 @@
 import React from 'react'
 import './styles.css';
 
-import { nanoid } from 'nanoid';
 import { Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';

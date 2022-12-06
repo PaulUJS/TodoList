@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react'
 import WorkoutList from '../components/WorkoutList';
 import WorkoutForm from '../components/WorkoutForm';
 
+const LS_KEY =  'workoutApp.exercise';
+
 export default function Userpage() {
 
   const [isShown, setIsShown] = useState(false);
@@ -42,8 +44,7 @@ export default function Userpage() {
 
 function Day({ day }) {
 
-  // useState allows use to track the state of the app
-  // The state is just data that needs to be tracked like inputs
+
   // set is setting the state to reflect the state when it's called, basically updating it
   const [isShown, setIsShown] = useState(false);
   const [exercises, setExercises] = useState([]);
@@ -53,25 +54,25 @@ function Day({ day }) {
     setIsShown(current => !current);
   };
   
-  // useEffect allows me to peform side effects in components
-  // This includes fetching data, updating dom, etc
-  // useEffect accepts 2 arguments, the second is optional
+  // Grabs the exercises from the db and displays them on page load
+  async function fetchExercises() {
+    // Grabs the workouts from the db and stores them in the json variable
+    const response = await fetch(`http://localhost:4000/api/workouts/`);
+    const json = await response.json();
+
+    if (response.ok) {
+      setExercises(json);
+    }
+  };
+
   useEffect(() => {
-
-    // Grabs the exercises from the db and displays them on page load
-    async function fetchExercises() {
-      // Grabs the workouts from the db and stores them in the json variable
-      const response = await fetch(`http://localhost:4000/api/workouts/`);
-      const json = await response.json();
-
-      if (response.ok) {
-        // Updates the context state of workouts with set_workouts
-        setExercises(json);
-      }
-    };
-
     fetchExercises();
   }, [])
+
+  useEffect(() => {
+    fetchExercises();
+    localStorage.setItem(LS_KEY, JSON.stringify(exercises))
+  }, [exercises])
 
   return (
     <>

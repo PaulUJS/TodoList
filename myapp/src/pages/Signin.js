@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import Navbar from '../components/Navbar';
 
 export default function Signin() {
-  e.preventDefault();
+  
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
 
   async function validateUser(e) {
+    e.preventDefault();
     const userInfo = { email, password };
 
     const response = fetch('http://localhost:4000/api/user/validate', {
@@ -44,7 +45,6 @@ export default function Signin() {
           {error && <div className='error'>{error}</div>}
         </form>
       </div>
-      
     </>
   )
 }

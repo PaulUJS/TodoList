@@ -5,6 +5,7 @@ const session = require('express-session');
 
 // Session management
 
+/*
 const oneDay = 1000 * 60 * 60 * 24;
 
 app.use(
@@ -14,7 +15,10 @@ app.use(
         cookie: { maxAge: oneDay },
         resave: false 
     })
-);
+); 
+*/
+
+
 
 async function createUser(req,res) {
   const { email, password } = req.body;
@@ -30,8 +34,8 @@ async function createUser(req,res) {
     console.log('Email already in use');
     res.status(404);
   } else if (!checkEmail) {
-    const newUser = User.create({email: email, password: hashedPass});
-    res.status(200);
+    const newUser = await User.create({email: email, password: hashedPass});
+    res.status(200).json(newUser);
   }
 }
 
@@ -49,9 +53,8 @@ async function validateUser(req,res) {
     const userID = findUser.id;
 
     if (await bcrypt.compare(password, hashedPass) == true) {
-      req.session.authenticated = true;
-      req.session.id = userID;
-      res.status(200);
+      res.status(200).json(findUser);
+      console.log('user exists');
     }
   }
 }

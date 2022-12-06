@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 export default function WorkoutForm({ day }) {
-
   const [name, setName] = useState('');
   const [weight, setWeight] = useState('');
   const [reps, setReps] = useState('');
