@@ -5,7 +5,7 @@ export default function Main() {
   return (
     <>
       <div className='main-container'>
-        <h1>Welcome to WorkoutBuddy!</h1>
+        <h1>Welcome to WorkoutPlanner!</h1>
       </div>
     </>
   )

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
+import { Context } from "../context/WorkoutContext";
 import WorkoutList from '../components/WorkoutList';
 import WorkoutForm from '../components/WorkoutForm';
-
-const LS_KEY =  'workoutApp.exercise';
 
 export default function Userpage() {
 
@@ -28,32 +27,24 @@ export default function Userpage() {
     <>    
       <div className='day-container'>
         <div className='title-wrapper'>
-          <h2>Monday</h2>
-          <button className='input-toggle' onClick={showAddExercise}>Display</button>
+        <h2>Monday</h2>
+        <button className='input-toggle' onClick={showAddExercise}>Display</button>
         </div>
+        <WorkoutForm/>
         {isShown && (
-            <div className='day-wrapper'>
-            <Day day='Monday'/>
-            </div>
+          <div className='day-wrapper'>
+          <Day/>
+          </div>
         )} 
       </div>
-      
     </>
   )
 }
 
-function Day({ day }) {
-
-
-  // set is setting the state to reflect the state when it's called, basically updating it
-  const [isShown, setIsShown] = useState(false);
-  const [exercises, setExercises] = useState([]);
-
-  // Updates the isShown state to make the div associated toggle 
-  function showAddExercise(e) {
-    setIsShown(current => !current);
-  };
+function Day() {
   
+  const [exercises, setExercises] = useContext(Context);
+
   // Grabs the exercises from the db and displays them on page load
   async function fetchExercises() {
     // Grabs the workouts from the db and stores them in the json variable
@@ -62,25 +53,16 @@ function Day({ day }) {
 
     if (response.ok) {
       setExercises(json);
-    }
+    }    
   };
 
   useEffect(() => {
     fetchExercises();
   }, [])
 
-  useEffect(() => {
-    fetchExercises();
-    localStorage.setItem(LS_KEY, JSON.stringify(exercises))
-  }, [exercises])
-
   return (
     <>
-      <WorkoutList exercises={exercises}/>
-        <button  className='input-toggle' onClick={showAddExercise}>Add Exercise</button>
-        {isShown && (
-          <WorkoutForm day={day}/>
-        )}
+      <WorkoutList/>
     </>
   )
 }

@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <>
       <nav className='nav'>
-        <Link to='/' className='site-title'>WorkoutBuddy</Link>
+        <Link to='/' className='site-title'>WorkoutPlanner</Link>
 
         <ul>
           <CustomLink to='/register'><button className='nav-button'>Sign Up</button></CustomLink>

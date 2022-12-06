@@ -1,16 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useContext } from 'react'
+import { nanoid } from 'nanoid';
 
-export default function WorkoutForm({ day }) {
-  const [name, setName] = useState('');
-  const [weight, setWeight] = useState('');
-  const [reps, setReps] = useState('');
+import { Context } from "../context/WorkoutContext";
+
+export default function WorkoutForm() {
+
+  const useDayRef = useRef();
+  const useNameRef = useRef();
+  const useWeightRef = useRef();
+  const useRepsRef = useRef();
+  const [exercises, setExercises] = useContext(Context);
   const [error, setError] = useState(null);
-  
 
   async function sendWorkout(e) {
     e.preventDefault();
 
-    const workout = {day, name, weight, reps};
+    const day = useDayRef.current.value;
+    const name = useNameRef.current.value;
+    const reps = useWeightRef.current.value;
+    const weight = useRepsRef.current.value;
+
+    const workout = {id: nanoid(), day: day, name: name, weight: weight, reps: reps};
 
     // Sends a post request to the backend api to add the workout to the db
     const response = fetch('http://localhost:4000/api/workouts/', {
@@ -28,9 +38,13 @@ export default function WorkoutForm({ day }) {
       console.log('error');
     }
     if (response.ok) {
-      setName('');
-      setWeight('');
-      setReps('');
+      setExercises(prevExercises => {
+        return [...prevExercises, json]
+      })
+      useDayRef.current.value = null;
+      useNameRef.current.value = null;
+      useWeightRef.current.value = null;
+      useRepsRef.current.value = null;
       setError(null);
       console.log('new workout added', json);
     }
@@ -39,19 +53,21 @@ export default function WorkoutForm({ day }) {
   return (
     <>
       <form className='exercise-input' onSubmit={sendWorkout}>
-        <label>Enter exercise name</label>
-        <input onChange={(e) => setName(e.target.value)} value={name} type='text' required/>
+        <label>Day</label>
+        <input ref={useDayRef} type='text' required></input>
 
-        <label>Enter amount of reps</label>
-        <input onChange={(e) => setReps(e.target.value)} value={reps} type='number' required/>
+        <label>Exercise name</label>
+        <input ref={useNameRef} type='text' required/>
 
-        <label>Enter exercise weight</label>
-        <input onChange={(e) => setWeight(e.target.value)} value={weight} type='number' required/>
+        <label>Amount of Reps</label>
+        <input ref={useWeightRef} type='number' required/>
 
-        <button type='submit'>Submit Exercise</button>
+        <label>Weight(lbs)</label>
+        <input ref={useRepsRef} type='number' required/>
+
+        <button type='submit'>Create Workout</button>
         {error && <div className='error'>{error}</div>}
       </form>
     </>
   )
 }
-
