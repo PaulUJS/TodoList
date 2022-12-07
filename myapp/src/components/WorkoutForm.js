@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
 import { nanoid } from 'nanoid';
 
 import { Context } from "../context/WorkoutContext";
@@ -9,7 +9,8 @@ export default function WorkoutForm() {
   const useNameRef = useRef();
   const useWeightRef = useRef();
   const useRepsRef = useRef();
-  const [exercises, setExercises] = useContext(Context);
+  const { exercises, setExercises } = useContext(Context);
+  const [workoutState, setWorkoutState] = useState([]);
   const [error, setError] = useState(null);
 
   async function sendWorkout(e) {
@@ -19,8 +20,8 @@ export default function WorkoutForm() {
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
-
     const workout = {id: nanoid(), day: day, name: name, weight: weight, reps: reps};
+    setWorkoutState(workout);
 
     // Sends a post request to the backend api to add the workout to the db
     const response = fetch('http://localhost:4000/api/workouts/', {
@@ -38,17 +39,17 @@ export default function WorkoutForm() {
       console.log('error');
     }
     if (response.ok) {
-      setExercises(prevExercises => {
-        return [...prevExercises, json]
-      })
       useDayRef.current.value = null;
       useNameRef.current.value = null;
       useWeightRef.current.value = null;
       useRepsRef.current.value = null;
       setError(null);
-      console.log('new workout added', json);
     }
   }
+
+  useEffect(() => {
+    setExercises([...exercises, workoutState])
+  }, [workoutState])
 
   return (
     <>
