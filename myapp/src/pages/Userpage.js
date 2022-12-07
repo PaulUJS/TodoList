@@ -1,37 +1,26 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
 
 import { Context } from "../context/WorkoutContext";
 import WorkoutList from '../components/WorkoutList';
 import WorkoutForm from '../components/WorkoutForm';
+import CollectionForm from '../components/CollectionForm';
 
 export default function Userpage() {
 
   const [isShown, setIsShown] = useState(false);
   
-
   function showAddExercise(e) {
     setIsShown(current => !current);
   };
-
-  const days = [
-    'Monday', 
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday'
-  ]
-
 
   return (
     <>    
       <div className='day-container'>
         <div className='title-wrapper'>
-        <h2>Monday</h2>
+        <h2>Workout Collections</h2>
         <button className='input-toggle' onClick={showAddExercise}>Display</button>
         </div>
-        <WorkoutForm/>
+        <CollectionForm/>
         {isShown && (
           <div className='day-wrapper'>
           <Day/>
@@ -45,6 +34,7 @@ export default function Userpage() {
 function Day() {
   const { exercises, setExercises } = useContext(Context);
 
+  // Sets the global context of the workouts when the page first loads
   useEffect(() => {
     async function fetchExercises() {
       // Grabs the workouts from the db and stores them in the json variable
@@ -56,10 +46,8 @@ function Day() {
       }    
     };
     fetchExercises();
-  }, [])
-  useEffect(() => {
-    setExercises(exercises)
-  }, [exercises])
+  }, []);
+
   return (
     <>
       <WorkoutList/>

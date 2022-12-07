@@ -3,23 +3,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 
-// Session management
-
-/*
-const oneDay = 1000 * 60 * 60 * 24;
-
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        saveUninitialized: true,
-        cookie: { maxAge: oneDay },
-        resave: false 
-    })
-); 
-*/
-
-
-
 async function createUser(req,res) {
   const { email, password } = req.body;
 
@@ -37,7 +20,7 @@ async function createUser(req,res) {
     const newUser = await User.create({email: email, password: hashedPass});
     res.status(200).json(newUser);
   }
-}
+};
 
 async function validateUser(req,res) {
   const { email, password } = req.body;
@@ -57,9 +40,9 @@ async function validateUser(req,res) {
       console.log('user exists');
     }
   }
-}
+};
 
 module.exports = {
   createUser,
   validateUser
-}
+};

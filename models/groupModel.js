@@ -3,15 +3,19 @@ const mongoose = require('mongoose');
 // Creates schema
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  email: {
+const groupSchema = new Schema({
+  name: {
       type: String,
       required: true
   },
-  password: {
+  type: {
       type: String,
       required: true
   },
+  userID: {
+    type: String,
+    required: false
+  }
 }, {timestamps: true});
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Group', groupSchema);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Workout({ workout }) {
   return (
@@ -8,7 +8,6 @@ export default function Workout({ workout }) {
         <label className='workout-label'>Weight:</label>
         <p>{workout.weight}</p>
       </div>
-      
       <div className='info-wrapper'>
         <label className='workout-label'>Exercise Reps:</label>
         <p>{workout.reps}</p>

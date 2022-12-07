@@ -1,16 +1,19 @@
-import React, { useState, useRef, useContext, useEffect } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
 import { Context } from "../context/WorkoutContext";
 
 export default function WorkoutForm() {
 
+  // Allows me to access the input fields
   const useDayRef = useRef();
   const useNameRef = useRef();
   const useWeightRef = useRef();
   const useRepsRef = useRef();
+  // Allows me to set the state and global context of the application for the exercises
   const { exercises, setExercises } = useContext(Context);
   const [workoutState, setWorkoutState] = useState([]);
+
   const [error, setError] = useState(null);
 
   async function sendWorkout(e) {
@@ -20,6 +23,7 @@ export default function WorkoutForm() {
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
+
     const workout = {id: nanoid(), day: day, name: name, weight: weight, reps: reps};
     setWorkoutState(workout);
 
@@ -45,11 +49,12 @@ export default function WorkoutForm() {
       useRepsRef.current.value = null;
       setError(null);
     }
-  }
+  };
 
+  // Everytime the workoutState is changed it updates the global context to match
   useEffect(() => {
-    setExercises([...exercises, workoutState])
-  }, [workoutState])
+    setExercises([workoutState, ...exercises])
+  }, [workoutState]);
 
   return (
     <>

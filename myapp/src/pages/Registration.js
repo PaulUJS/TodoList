@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 
 export default function Registration() {
@@ -17,7 +17,7 @@ export default function Registration() {
       headers: {
         'Content-Type': 'application/json'
       }
-    })
+    });
 
     const json =  await response.json();
 
@@ -29,7 +29,7 @@ export default function Registration() {
       setPassword('');
       setError(null);
     }
-  }
+  };
 
   return (
   <>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 
 export default function Signin() {
@@ -18,7 +18,7 @@ export default function Signin() {
       headers: {
         'Content-Type': 'application/json'
       }
-    })
+    });
 
     const json =  await response.json();
 
@@ -30,7 +30,7 @@ export default function Signin() {
       setPassword('');
       setError(null);
     }
-  }
+  };
 
   return (
     <>
