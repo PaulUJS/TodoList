@@ -33,6 +33,7 @@ export default function Registration() {
 
   return (
   <>
+    <Navbar/>
     <div className='regi-container'>
       <form className='regi-form' onSubmit={registerUser}>
         <h1>Create Account</h1>

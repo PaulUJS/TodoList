@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
+import { nanoid } from 'nanoid';
 
 import { Context } from '../context/CollectionContext';
 
@@ -7,7 +8,7 @@ function CollectionForm() {
   const nameRef = useRef();
 
   const [collectionState, setCollectionState] = useState([]);
-  const [collection, setCollection] = useContext(Context);
+  const { collection, setCollection } = useContext(Context);
 
   const [error, setError] = useState(null);
 
@@ -17,7 +18,7 @@ function CollectionForm() {
     const workoutType = workoutTypeRef.current.value;
     const name = nameRef.current.value;
 
-    const newCollection = {name: name, type: workoutType};
+    const newCollection = {id: nanoid(), name: name, type: workoutType};
     setCollectionState(newCollection);
 
     const response = fetch('http://localhost:4000/api/collections/', {

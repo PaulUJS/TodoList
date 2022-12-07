@@ -3,7 +3,6 @@ import './styles.css';
 
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
 import Signin from './pages/Signin';
 import Userpage from './pages/Userpage';
 import Main from './pages/Main';
@@ -13,7 +12,6 @@ function App() {
 
   return (
     <>
-      <Navbar/>
       <div className='container'>
         <Routes>
           <Route path='/' element={<Main/>} />

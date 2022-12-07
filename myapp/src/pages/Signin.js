@@ -34,6 +34,7 @@ export default function Signin() {
 
   return (
     <>
+      <Navbar/>
       <div className='signin-container'>
         <form className='signin-form' onSubmit={validateUser}>
           <h1>Sign In</h1>
