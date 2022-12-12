@@ -6,7 +6,6 @@ import { Context } from "../context/WorkoutContext";
 export default function WorkoutForm() {
 
   // Allows me to access the input fields
-  const useDayRef = useRef();
   const useNameRef = useRef();
   const useWeightRef = useRef();
   const useRepsRef = useRef();
@@ -19,12 +18,11 @@ export default function WorkoutForm() {
   async function sendWorkout(e) {
     e.preventDefault();
 
-    const day = useDayRef.current.value;
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
 
-    const workout = {id: nanoid(), day: day, name: name, weight: weight, reps: reps};
+    const workout = {id: nanoid(), group: group, name: name, weight: weight, reps: reps, groupID: groupID};
     setWorkoutState(workout);
 
     // Sends a post request to the backend api to add the workout to the db
@@ -40,10 +38,8 @@ export default function WorkoutForm() {
 
     if (!response.ok) {
       setError(json.error);
-      console.log('error');
     }
     if (response.ok) {
-      useDayRef.current.value = null;
       useNameRef.current.value = null;
       useWeightRef.current.value = null;
       useRepsRef.current.value = null;
@@ -59,9 +55,6 @@ export default function WorkoutForm() {
   return (
     <>
       <form className='exercise-input' onSubmit={sendWorkout}>
-        <label>Day</label>
-        <input ref={useDayRef} type='text' required></input>
-
         <label>Exercise name</label>
         <input ref={useNameRef} type='text' required/>
 

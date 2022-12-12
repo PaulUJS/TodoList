@@ -18,7 +18,7 @@ function CollectionList() {
     fetchCollection();
   }, []);
   
-  return (
+  return ( 
     collection.map(collections => {
       return (
         <>

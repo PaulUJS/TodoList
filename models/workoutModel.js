@@ -8,6 +8,10 @@ const workoutSchema = new Schema({
         type: String,
         required: true
     },
+    type: {
+        type: String,
+        required: false
+    },
     name: {
         type: String,
         required: true
@@ -23,6 +27,10 @@ const workoutSchema = new Schema({
     userID: {
         type: Number,
         required: false
+    },
+    groupID: {
+        type: Number,
+        required: true
     }
 
 }, { timestamps: true});

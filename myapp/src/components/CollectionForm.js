@@ -18,10 +18,10 @@ function CollectionForm() {
     const workoutType = workoutTypeRef.current.value;
     const name = nameRef.current.value;
 
-    const newCollection = {id: nanoid(), name: name, type: workoutType};
+    const newCollection = {id: nanoid(), name: name, type: workoutType, groupID: nanoid()};
     setCollectionState(newCollection);
 
-    const response = fetch('http://localhost:4000/api/collections/', {
+    const response = fetch('http://localhost:4000/api/workouts/', {
       method: 'POST',
       body: JSON.stringify(newCollection),
       headers: {
@@ -64,6 +64,7 @@ function CollectionForm() {
         </select>
 
         <button type='submit'>Create Collection</button>
+        {error && <div className='error'>{error}</div>}
       </form>
     </>
   )

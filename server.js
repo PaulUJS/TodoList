@@ -1,8 +1,5 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const collectionRoutes = require('./routes/groupRoutes');
-const GroupController = require('./controllers/GroupController');
-const groupRoutes = require('./routes/workoutRoutes');
 const workoutRoutes = require('./routes/workoutRoutes');
 const workoutController = require('./controllers/workoutController');
 const userRoutes = require('./routes/userRoutes');
@@ -41,8 +38,6 @@ app.use('/', (req,res,next) => {
 });
 
 // Routes
-app.use('/api/collections', groupRoutes);
-
 app.use('/api/workouts', workoutRoutes);
 
 app.use('/api/user', userRoutes);
