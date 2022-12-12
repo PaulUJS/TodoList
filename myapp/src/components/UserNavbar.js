@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
+import SearchBar from './SearchBar';
+
 export default function UserNavbar() {
   const [isShown, setIsShown] = useState(false);
   const searchRef = useRef();
@@ -13,12 +15,7 @@ export default function UserNavbar() {
       <nav className='nav'>
         <Link to='/userpage' className='site-title'>User</Link>
         <ul>
-          <button onClick={showSearchBar}>Search</button>
-          {isShown && (
-            <div className='search-container'>
-              <input placeholder='Search' ref={searchRef}></input>
-            </div>
-          )}
+          <SearchBar/>
           <CustomLink to='/yourcollections'><button className='nav-button'>Collections</button></CustomLink>
           <CustomLink to='/likedcollections'><button className='nav-button'>Likes</button></CustomLink>
           <CustomLink to='/logout'><button className='nav-button'>Log Out</button></CustomLink>

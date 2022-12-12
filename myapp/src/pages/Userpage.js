@@ -18,6 +18,7 @@ export default function Userpage() {
         <Route path='/likedcollections'/>
         <Route path='/logout'/>
         <Route path='/collection' element={<><WorkoutForm/><WorkoutList/></>}/>
+        <Route path='/searchresults' element={<><div>Results</div><CollectionList/></>} />
       </Routes>
     </>
   )
