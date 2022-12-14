@@ -51,7 +51,7 @@ function CollectionForm() {
     <>
       <form className='collection-form' onSubmit={createCollection}>
         <label>Collection Name</label>
-        <input ref={groupName}type='text'/>
+        <input ref={groupNameRef}type='text'/>
 
         <label>Workout Type</label>
         <select>

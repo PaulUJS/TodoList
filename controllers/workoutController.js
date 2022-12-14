@@ -25,13 +25,33 @@ async function getSingleWorkout(req,res) {
   }
 };
 
-async function getCollection(req,res) {
-  const { groupID } = req.params;
-
+async function getCollectionByType(req,res) {
+  const { type } = req.params;
+  
   try {
+    const collection = Workout.find({type: type}).sort({createdAt: -1});
+    res.send(200).json(collection);
+  } catch (error) {
+    res.send(404).json({error: 'No collections found'});
+  }
+}
+
+async function getCollection(req,res) {
+  const { groupID, type } = req.params;
+
+  if (groupID && type) {
+    const collection = await Workout.find({groupID: groupID, type: type}).sort({createdAt: -1});
+    return res.status(200).json(collection);
+  }
+  if (groupID && !type) {
     const collection = await Workout.find({groupID: groupID}).sort({createdAt: -1});
     return res.status(200).json(collection);
-  } catch (error) {
+  }
+  if (type && !groupID) {
+    const collection = Workout.find({type: type}).sort({createdAt: -1});
+    res.send(200).json(collection);
+  }
+  else {
     return res.status(404).json({error: 'Cannot find this collection'});
   }
 }

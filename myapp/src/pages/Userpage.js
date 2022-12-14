@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
-
+import SearchBar from '../components/SearchBar';
 import CollectionForm from '../components/CollectionForm';
 import CollectionList from '../components/CollectionList'
 import WorkoutForm from '../components/WorkoutForm';
@@ -18,7 +18,8 @@ export default function Userpage() {
         <Route path='/likedcollections'/>
         <Route path='/logout'/>
         <Route path='/collection' element={<><WorkoutForm/><WorkoutList/></>}/>
-        <Route path='/searchresults' element={<><div>Results</div><CollectionList/></>} />
+        <Route path='/search' element={<SearchBar/>}/>
+        <Route path='/searchresults' element={<><div>Results</div><SearchBar/><CollectionList/></>} />
       </Routes>
     </>
   )

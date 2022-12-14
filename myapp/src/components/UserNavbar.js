@@ -15,7 +15,7 @@ export default function UserNavbar() {
       <nav className='nav'>
         <Link to='/userpage' className='site-title'>User</Link>
         <ul>
-          <SearchBar/>
+          <CustomLink to='search'><button className='nav-button'>Search</button></CustomLink>
           <CustomLink to='/yourcollections'><button className='nav-button'>Collections</button></CustomLink>
           <CustomLink to='/likedcollections'><button className='nav-button'>Likes</button></CustomLink>
           <CustomLink to='/logout'><button className='nav-button'>Log Out</button></CustomLink>
