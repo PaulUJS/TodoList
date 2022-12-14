@@ -25,14 +25,36 @@ async function getSingleWorkout(req,res) {
   }
 };
 
+async function getCollection(req,res) {
+  const { groupID } = req.params;
+
+  try {
+    const collection = await Workout.find({groupID: groupID}).sort({createdAt: -1});
+    return res.status(200).json(collection);
+  } catch (error) {
+    return res.status(404).json({error: 'Cannot find this collection'});
+  }
+}
+
+async function deleteCollection(req,res) {
+  const { groupID } = req.params;
+
+  try {
+    const collection = await Workout.deleteMany({groupID: groupID});
+    return res.status(200).json(collection);
+  } catch (error) {
+    return res.send(404).json({error: 'cannot access this collection'})
+  }
+}
+
 // Create and save workout
 async function createWorkout(req,res) {
-  const {name, group, weight, reps} = req.body;
+  const {group, type, name, weight, reps, groupID} = req.body;
   const userID = '';
 
   // adds workout to db
   try {
-    const workout = await Workout.create({group, name, weight, reps});
+    const workout = await Workout.create({group, type, name, weight, reps, groupID});
     res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({error: error.message});
@@ -87,5 +109,7 @@ module.exports = {
   createWorkout,
   deleteWorkout,
   updateWorkout,
-  deleteAll
+  deleteAll,
+  getCollection,
+  deleteCollection
 }

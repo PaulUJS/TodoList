@@ -4,9 +4,19 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 function SearchBar() {
   const searchRef = useRef();
 
-  async function searchCollections(e) {
-    return;
-  };
+  const { collection, setCollection } = useContext(Context);
+  useEffect(() => {
+    async function searcCollections() {
+      // Grabs the workouts from the db and stores them in the json variable
+      const response = await fetch(`http://localhost:4000/api/collections/`);
+      const json = await response.json();
+  
+      if (response.ok) {
+        setCollection(json);
+      }    
+    };
+    searchCollections();
+  }, []);
 
   return (
     <>

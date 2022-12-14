@@ -5,7 +5,7 @@ import { Context } from '../context/CollectionContext';
 
 function CollectionForm() {
   const workoutTypeRef = useRef();
-  const nameRef = useRef();
+  const groupNameRef = useRef();
 
   const [collectionState, setCollectionState] = useState([]);
   const { collection, setCollection } = useContext(Context);
@@ -16,9 +16,9 @@ function CollectionForm() {
     e.preventDefault();
 
     const workoutType = workoutTypeRef.current.value;
-    const name = nameRef.current.value;
+    const groupName = nameRef.current.value;
 
-    const newCollection = {id: nanoid(), name: name, type: workoutType, groupID: nanoid()};
+    const newCollection = {id: nanoid(), group: groupName, type: workoutType, groupID: nanoid()};
     setCollectionState(newCollection);
 
     const response = fetch('http://localhost:4000/api/workouts/', {
@@ -51,7 +51,7 @@ function CollectionForm() {
     <>
       <form className='collection-form' onSubmit={createCollection}>
         <label>Collection Name</label>
-        <input ref={nameRef}type='text'/>
+        <input ref={groupName}type='text'/>
 
         <label>Workout Type</label>
         <select>
