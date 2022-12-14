@@ -9,7 +9,8 @@ const {
   updateWorkout,
   deleteAll,
   getCollection,
-  deleteCollection
+  deleteCollection,
+  getUserCollections
 } = require('../controllers/workoutController');
 
 const router = express.Router();
@@ -23,6 +24,8 @@ router.put('/:id', updateWorkout);
 router.delete('/:id', deleteWorkout);
 
 router.get('/:id', getSingleWorkout);
+
+router.get('/collection', getUserCollections);
 
 router.get('/collection/:groupID', getCollection);
 

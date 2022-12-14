@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
-import CollectionList from './CollectionList';
+import React, { useRef, useState, useContext, useEffect } from 'react';
+import { Context } from '../context/CollectionContext';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import UserNavbar from './UserNavbar';
 
 function SearchBar() {
   const groupIDRef = useRef();
@@ -44,11 +45,21 @@ function SearchBar() {
 
   return (
     <>
-      <div className='search-container'>
-        <form onSubmit={searchCollections}>
-          <input placeholder='Collection-ID' ref={groupIDRef}/>
-          <input placeholder='Workout-Type' ref={typeRef}/>
-          <CustomLink to='/searchresults'><button type='submit'>Search</button></CustomLink>
+      <UserNavbar/>
+      <div className='user-container'>
+        <form className='search-form' onSubmit={searchCollections}>
+          <label>Enter Collection ID</label>
+          <input placeholder='Collection-ID'  className='search-input' ref={groupIDRef}/>
+          <label>Enter Collection Type</label>
+          <select>
+          <option ref={typeRef}>FullBody</option>
+          <option ref={typeRef}>UpperBody</option>
+          <option ref={typeRef}>LowerBody</option>
+          <option ref={typeRef}>Push</option>
+          <option ref={typeRef}>Pull</option>
+          <option ref={typeRef}>Other</option>
+          </select>
+          <CustomLink to='/searchresults'><button className='search-button' type='submit'>Search</button></CustomLink>
           {error && <div className='error'>{error}</div>}
         </form>
       </div>

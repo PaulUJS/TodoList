@@ -16,7 +16,7 @@ function CollectionForm() {
     e.preventDefault();
 
     const workoutType = workoutTypeRef.current.value;
-    const groupName = nameRef.current.value;
+    const groupName = groupNameRef.current.value;
 
     const newCollection = {id: nanoid(), group: groupName, type: workoutType, groupID: nanoid()};
     setCollectionState(newCollection);
@@ -36,14 +36,14 @@ function CollectionForm() {
       console.log('error');
     }
     if (response.ok) {
-      nameRef.current.value = null;
+      groupNameRef.current.value = null;
       workoutTypeRef.current.value = null;
       setError(null);
     }
   };
 
   useEffect(() => {
-    setCollectionState([collectionState, ...collection])
+    setCollection([...collection, collectionState])
   }, [collectionState]);
 
 
@@ -53,7 +53,7 @@ function CollectionForm() {
         <label>Collection Name</label>
         <input ref={groupNameRef}type='text'/>
 
-        <label>Workout Type</label>
+        <label>Collection Type</label>
         <select>
           <option ref={workoutTypeRef}>FullBody</option>
           <option ref={workoutTypeRef}>UpperBody</option>

@@ -25,15 +25,9 @@ async function getSingleWorkout(req,res) {
   }
 };
 
-async function getCollectionByType(req,res) {
-  const { type } = req.params;
-  
-  try {
-    const collection = Workout.find({type: type}).sort({createdAt: -1});
-    res.send(200).json(collection);
-  } catch (error) {
-    res.send(404).json({error: 'No collections found'});
-  }
+async function getUserCollections(req,res) {
+  const collection = await Workout.find().sort({createdAt: -1});
+  return res.status(200).json(collection);
 }
 
 async function getCollection(req,res) {
@@ -131,5 +125,6 @@ module.exports = {
   updateWorkout,
   deleteAll,
   getCollection,
-  deleteCollection
+  deleteCollection,
+  getUserCollections
 }

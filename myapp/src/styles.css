@@ -159,121 +159,121 @@ body {
 
 /* Userpage Component */
 
-.day-container {
+.user-container { 
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
   
   min-height: 100vh;
   min-width: 100vh;
 }
 
-.title-wrapper {
-  display: flex;
-  align-self: flex-start;
-  flex-direction: column;
+/* CollectionForm Component */
 
-  border: 0.5px solid black;
-  margin: 10px;
-
-  width: 25%;
-}
-
-.title-wrapper h2 {
-  margin-left: 25px;
-  margin-right: 200px;
-  margin-bottom: 20px;
-  align-self: flex-start;
-}
-
-.day-wrapper {
-  display: flex;
-
-  align-self: flex-start;
-  justify-content: flex-start;
-  flex-direction: column;
-
-  margin-left: 15px;
-
-  height: fit-content;
-  width: 45%;
-}
-
-.day-wrapper h2 {
-  align-self: flex-start;
-  
-  margin-left: 25px;
-}
-
-.day-wrapper p {
-  font-size: 20px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  margin-left: 5px;
-  color: #333;
-}
-
-.workout-label {
-  margin-top: 5px;
-  margin-bottom: 15px;
-  margin-left: 15px;
-
-  font-size: 20px;
-  color: #09106d;
-}
-
-
-.workout-wrapper {
-  border: 0.25px solid black;
-
-  margin: 10px;
-}
-
-.exercise-input {
+.collection-form {
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+  align-self: auto;
 
-  margin: 10px;
+  margin: 15px;
+  border: 0.5px solid black;
+
   width: 275px;
   height: 40%;
-
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
 }
 
-.exercise-input button {
-  margin: 10px;
-  width: 150px;
-}
-
-.exercise-input label {
-  margin: 10px;
-  font-size: 20px;
-  
-}
-
-.exercise-input input {
-  margin: 10px;
-  width: 200px;
-}
-
-.info-wrapper {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  flex-direction: row;
-
-}
-
-.input-toggle {
-  height: fit-content;
-  width: 112px;
-  align-self: flex-end;
-  margin-bottom: 15px;
+.collection-form label {
+  font-size: 25px;
+  margin-top: 15px;
+  margin-left: 15px;
   margin-right: 15px;
 }
 
-.title-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.collection-form input {
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 200px;
 }
+
+.collection-form select {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  width: 200px;
+}
+
+.collection-form button {
+  margin-bottom: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+/* CollectionList Component */
+
+.collection-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: auto;
+
+  margin: 15px;
+  border: 0.5px solid black;
+}
+
+.collection-container li {
+  list-style: none;
+}
+
+/* SearchBar Component */
+
+.search-form {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+
+  margin: 15px;
+  border: 0.5px solid black;
+
+  width: 325px;
+  height: 30%;
+}
+
+.search-form label {
+  font-size: 25px;
+  margin-top: 15px;
+  margin-left: 25px;
+  margin-right: 15px;
+}
+
+.search-form input {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 15px;
+  width: 200px;
+}
+
+.search-form select {
+  margin-top: 5px;
+  margin-left: 25px;
+  margin-right: 15px;
+  width: 200px;
+}
+
+.search-form button {
+  margin: 15px;
+  margin-left: 25px;
+  width: 115px;
+}
+
+.search-form li {
+  list-style: none;
+}
+

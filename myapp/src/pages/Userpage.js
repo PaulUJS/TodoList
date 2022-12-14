@@ -1,27 +1,34 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Routes, Route } from 'react-router-dom';
-import SearchBar from '../components/SearchBar';
+import React, { useContext, useEffect } from 'react';
+import { Context } from '../context/CollectionContext';
 import CollectionForm from '../components/CollectionForm';
 import CollectionList from '../components/CollectionList'
-import WorkoutForm from '../components/WorkoutForm';
-import WorkoutList from '../components/WorkoutList';
 import UserNavbar from '../components/UserNavbar';
 
 export default function Userpage() {
-
+  const { collection, setCollection } = useContext(Context);
+  useEffect(() => {
+    async function fetchCollection() {
+      // Grabs the workouts from the db and stores them in the json variable
+      const response = await fetch(`http://localhost:4000/api/workouts/`);
+      const json = await response.json();
+  
+      if (response.ok) {
+        setCollection(json);
+      } 
+    };
+    fetchCollection();
+  }, []);
+  useEffect(() => {
+    setCollection(collection)
+  }, [collection])
   return (
-    <>
-      <UserNavbar/>
-      
-      <Routes>
-        <Route path='/userpage' element={<><CollectionForm/><CollectionList/></>}/>
-        <Route path='/likedcollections'/>
-        <Route path='/logout'/>
-        <Route path='/collection' element={<><WorkoutForm/><WorkoutList/></>}/>
-        <Route path='/search' element={<SearchBar/>}/>
-        <Route path='/searchresults' element={<><div>Results</div><SearchBar/><CollectionList/></>} />
-      </Routes>
-    </>
+      <>
+        <UserNavbar/>
+        <div className='user-container'>
+          <CollectionForm/>
+          <CollectionList/>
+        </div>
+      </>
   )
 }
 

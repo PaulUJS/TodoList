@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Context } from '../context/CollectionContext';
 
-function Collection({ collections }) {
+function Collection({ collection }) {
   return (
     <>
-      <CustomLink to='/collection'>
         <div className='collection-container'>
-          <h2>{collections.name}</h2>
+          <h2>{collection.group}</h2>
+          <p>{collection.type}</p>
         </div>
-      </CustomLink>
+
     </>
   )
 }
