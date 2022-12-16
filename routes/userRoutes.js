@@ -3,7 +3,8 @@ const express = require('express');
 
 const {
   createUser,
-  validateUser
+  validateUser,
+  logoutUser
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -11,5 +12,7 @@ const router = express.Router();
 router.post('/register', createUser);
 
 router.post('/validate', validateUser);
+
+router.get('/logout', logoutUser);
 
 module.exports = router;

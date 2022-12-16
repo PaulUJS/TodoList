@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+
+import { Context } from '../context/SessionContext';
+
 import Navbar from '../components/Navbar';
 
 export default function Signin() {
   
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
+
+  const [sessionState, setSessionState] = useState([]);
+  const { session, setSession } = useContext(Context);
 
   async function validateUser(e) {
     e.preventDefault();
@@ -22,15 +27,16 @@ export default function Signin() {
 
     const json =  await response.json();
 
-    if (!response.ok) {
-      setError(json.error);
-    }
     if (response.ok) {
+      setSessionState(json);
       setEmail('');
       setPassword('');
-      setError(null);
     }
   };
+
+  useEffect(() => {
+    setSession(sessionState);
+  }, [sessionState])
 
   return (
     <>
@@ -42,10 +48,20 @@ export default function Signin() {
             <input onChange={(e) => setEmail(e.target.value)} placeholder='Email' type='email' required/>
           <label>Enter your Password</label>
             <input onChange={(e) => setPassword(e.target.value)} placeholder='Password' type='password' required/>
-          <button>Sign in</button>
-          {error && <div className='error'>{error}</div>}
+          <button type='submit'>Sign in</button>
         </form>
       </div>
     </>
   )
 }
+
+function CustomLink({ to, children, ...props }) {
+  const resolvedPath = useResolvedPath(to);
+  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
+
+  return (
+    <li className={isActive ? 'active' : ''}>
+      <Link to={to}>{children}</Link>
+    </li>
+  )
+};

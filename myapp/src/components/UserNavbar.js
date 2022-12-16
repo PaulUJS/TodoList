@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Context as SessionContext } from '../context/SessionContext';
 
 export default function UserNavbar() {
+  const { session, setSession } = useContext(SessionContext);
+  
+  useEffect(() => {
+    setSession(session)
+  }, [session])
+
   return (
     <>
       <nav className='nav'>
         <Link to='/userpage' className='site-title'>User</Link>
         <ul>
           <CustomLink to='/search'><button className='nav-button'>Search</button></CustomLink>
-          <CustomLink to='/yourcollections'><button className='nav-button'>Collections</button></CustomLink>
           <CustomLink to='/likedcollections'><button className='nav-button'>Likes</button></CustomLink>
           <CustomLink to='/logout'><button className='nav-button'>Log Out</button></CustomLink>
         </ul>

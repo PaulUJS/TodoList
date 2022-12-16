@@ -1,7 +1,11 @@
 const User = require('../models/userModel');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const session = require('express-session');
+const express = require("express");
+
+
+
+const app = express();
 
 async function createUser(req,res) {
   const { email, password } = req.body;
@@ -37,12 +41,17 @@ async function validateUser(req,res) {
 
     if (await bcrypt.compare(password, hashedPass) == true) {
       res.status(200).json(findUser);
-      console.log('user exists');
+      console.log('logged in');
     }
   }
 };
 
+async function logoutUser(req,res) {
+  
+}
+
 module.exports = {
   createUser,
-  validateUser
+  validateUser,
+  logoutUser
 };

@@ -2,6 +2,7 @@ import React, { useState, useRef, useContext, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 
 import { Context } from "../context/WorkoutContext";
+import { Context as CollectionContext } from '../context/CollectionContext';
 
 export default function WorkoutForm() {
 
@@ -9,9 +10,13 @@ export default function WorkoutForm() {
   const useNameRef = useRef();
   const useWeightRef = useRef();
   const useRepsRef = useRef();
+
   // Allows me to set the state and global context of the application for the exercises
   const { exercises, setExercises } = useContext(Context);
   const [workoutState, setWorkoutState] = useState([]);
+
+  const { collection, setCollection } = useContext(CollectionContext);
+  const [collectionState, setCollectionState] = useState([]);
 
   const [error, setError] = useState(null);
 
@@ -22,7 +27,11 @@ export default function WorkoutForm() {
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
 
-    const workout = {id: nanoid(), group: group, name: name, weight: weight, reps: reps, groupID: groupID};
+    setCollectionState(collection);
+    const group = collection.group;
+    const groupID = collection.groupID;
+
+    const workout = {group: group, name: name, weight: weight, reps: reps, groupID: groupID};
     setWorkoutState(workout);
 
     // Sends a post request to the backend api to add the workout to the db

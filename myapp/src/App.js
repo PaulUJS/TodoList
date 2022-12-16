@@ -10,6 +10,7 @@ import Registration from './pages/Registration';
 import ResultsPage from './pages/ResultsPage';
 import UserNavbar from './components/UserNavbar';
 import SearchPage from './pages/SearchPage';
+import WorkoutPage from './pages/WorkoutPage';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/signin' element={<Signin/>} />
           <Route path='/register' element={<Registration/>} />
           <Route path='/userpage' element={<Userpage/>} />
+          <Route path='/collection' element={<WorkoutPage/>} />
           <Route path='/likedcollections'/>
           <Route path='/logout' element={<><UserNavbar/><div>hello</div></>}/>
           <Route path='/search' element={<SearchPage/>}/>
