@@ -7,7 +7,7 @@ function CollectionList() {
   const { collection, setCollection } = useContext(Context);
   if ( collection.length === 0) {
     return (
-      <div>You don't currently have any collections!</div>
+      <div>No Current Collections</div>
     )
   } else {
     return ( 

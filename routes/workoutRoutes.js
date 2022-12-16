@@ -7,10 +7,7 @@ const {
   createWorkout,
   deleteWorkout,
   updateWorkout,
-  deleteAll,
-  getCollection,
-  deleteCollection,
-  getUserCollections
+  deleteAll
 } = require('../controllers/workoutController');
 
 const router = express.Router();
@@ -24,12 +21,6 @@ router.put('/:id', updateWorkout);
 router.delete('/:id', deleteWorkout);
 
 router.get('/:id', getSingleWorkout);
-
-router.get('/collection', getUserCollections);
-
-router.get('/collection/:groupID', getCollection);
-
-router.delete('/collection/:groupID', deleteCollection);
 
 router.delete('/', deleteAll);
 

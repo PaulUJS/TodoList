@@ -2,13 +2,15 @@ import React from 'react';
 
 import SearchBar from '../components/SearchBar';
 import UserNavbar from '../components/UserNavbar';
+import CollectionList from '../components/CollectionList';
 
 function SearchPage() {
+
 	return (
 		<>
 			<UserNavbar/>
 			<div className='user-container'>
-				<div className='collection-container'>Currently Loading</div>
+				<CollectionList/>
 				<SearchBar/>
 			</div>
 		</>

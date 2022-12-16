@@ -7,10 +7,7 @@ import Signin from './pages/Signin';
 import Userpage from './pages/Userpage';
 import Main from './pages/Main';
 import Registration from './pages/Registration';
-import SearchBar from './components/SearchBar';
-import CollectionList from './components/CollectionList'
-import WorkoutForm from './components/WorkoutForm';
-import WorkoutList from './components/WorkoutList';
+import ResultsPage from './pages/ResultsPage';
 import UserNavbar from './components/UserNavbar';
 import SearchPage from './pages/SearchPage';
 
@@ -27,7 +24,7 @@ function App() {
           <Route path='/likedcollections'/>
           <Route path='/logout' element={<><UserNavbar/><div>hello</div></>}/>
           <Route path='/search' element={<SearchPage/>}/>
-          <Route path='/searchresults' element={<><UserNavbar/><div>Results</div><SearchBar/><CollectionList/></>} />
+          <Route path='/searchresults' element={<ResultsPage/>} />
         </Routes>
       </div>
     </>

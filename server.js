@@ -1,9 +1,8 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 const workoutRoutes = require('./routes/workoutRoutes');
-const workoutController = require('./controllers/workoutController');
 const userRoutes = require('./routes/userRoutes');
-const userController = require('./controllers/UserController');
+const collectionRoutes = require('./routes/collectionRoutes');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require("dotenv").config();
@@ -38,6 +37,8 @@ app.use('/', (req,res,next) => {
 });
 
 // Routes
+app.use('/api/collections', collectionRoutes)
+
 app.use('/api/workouts', workoutRoutes);
 
 app.use('/api/user', userRoutes);
