@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
-import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath} from 'react-router-dom';
 import { Context } from '../context/CollectionContext';
 
 function Collection({ collection }) {
-  const { collection, setCollection } = useContext(Context);
   return (
     <>
-      <CustomLink to='/collection' className='custom-link'>
-        <div className='collection-container'>
-          <h2>{collection.group}</h2>
-          <p>{collection.type}</p>
-        </div>
-      </CustomLink>
+      <form className='collection-container'>
+        <CustomLink to='/collection'>
+          <button type='submit' className='collection-container'>
+            <h2>{collection.group}</h2>
+            <p>{collection.groupID}</p>
+            <p>{collection.type}</p>
+            <img src={process.env.PUBLIC_URL + '/hearticon.png'} />
+          </button>
+        </CustomLink>
+      </form>
     </>
   )
 }

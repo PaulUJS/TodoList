@@ -63,7 +63,7 @@ export default function WorkoutForm() {
 
   return (
     <>
-      <form className='exercise-input' onSubmit={sendWorkout}>
+      <form className='collection-form' onSubmit={sendWorkout}>
         <label>Exercise name</label>
         <input ref={useNameRef} type='text' required/>
 

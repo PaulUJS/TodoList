@@ -1,17 +1,19 @@
 import React, { useContext } from 'react'
-import { Context } from "../context/WorkoutContext";
+import { Context } from "../context/CollectionContext";
 
 import Workout from './Workout';
 
 export default function WorkoutList() {
-  const { exercises, setExercises } = useContext(Context);
+  const { collection, setCollection } = useContext(Context);
   return (
-    exercises.map(workout => {
-      return (
-        <>
-          <Workout key={workout.id} workout={workout}/>
-        </>
-      )
+    collection.map(workout => {
+      if (workout.name) {
+        return (
+          <>
+            <Workout key={workout.id} workout={workout}/>
+          </>
+        )
+      }
     })
   )
 }
