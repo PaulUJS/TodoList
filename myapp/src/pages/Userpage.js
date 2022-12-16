@@ -18,15 +18,17 @@ export default function Userpage() {
     };
     fetchCollection();
   }, []);
+
   useEffect(() => {
     setCollection(collection)
   }, [collection])
+  
   return (
       <>
         <UserNavbar/>
         <div className='user-container'>
-          <CollectionForm/>
           <CollectionList/>
+          <CollectionForm/>
         </div>
       </>
   )

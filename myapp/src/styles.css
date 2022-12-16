@@ -134,36 +134,14 @@ body {
   width: 50vh;
 }
 
-/* Signin Component */
-
-.signin-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  min-height: 100vh;
-  min-width: 100vh;
-}
-
-.signin-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background-color:aqua;
-  
-  height: 50vh;
-  width: 50vh;
-}
-
 /* Userpage Component */
 
 .user-container { 
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  
+  display: grid;
+  gap: 1rem;
+
+  grid-template-columns: repeat(2, 600px);
+  grid-template-rows: repeat(auto-fit, 200px);
   min-height: 100vh;
   min-width: 100vh;
 }
@@ -171,21 +149,31 @@ body {
 /* CollectionForm Component */
 
 .collection-form {
-  position: fixed;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: start;
-  align-self: auto;
+  align-items: center;
+
+  position: fixed;
+  z-index: 1;
+  right: 0;
 
   margin: 15px;
   border: 0.5px solid black;
+  grid-column: 3;
+  grid-row: 1;
 
   width: 275px;
-  height: 40%;
+  height: 30%;
 }
 
-.collection-form label {
+.top-label {
+  font-size: 25px;
+  margin-top: 45px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.bot-label {
   font-size: 25px;
   margin-top: 15px;
   margin-left: 15px;
@@ -220,10 +208,14 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  align-self: auto;
 
+  grid-column-start: 1;
+  grid-column-end: 2;
   margin: 15px;
   border: 0.5px solid black;
+
+  height: 200px;
+  width: 600px;
 }
 
 .collection-container li {
@@ -233,11 +225,12 @@ body {
 /* SearchBar Component */
 
 .search-form {
-  position: fixed;
   display: flex;
+  position: fixed;
+  z-index: 1;
+  right: 0;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: start;
 
   margin: 15px;
   border: 0.5px solid black;

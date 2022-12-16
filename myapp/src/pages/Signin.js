@@ -35,8 +35,8 @@ export default function Signin() {
   return (
     <>
       <Navbar/>
-      <div className='signin-container'>
-        <form className='signin-form' onSubmit={validateUser}>
+      <div className='regi-container'>
+        <form className='regi-form' onSubmit={validateUser}>
           <h1>Sign In</h1>
           <label>Enter your Email</label>
             <input onChange={(e) => setEmail(e.target.value)} placeholder='Email' type='email' required/>

@@ -18,7 +18,7 @@ function CollectionForm() {
     const workoutType = workoutTypeRef.current.value;
     const groupName = groupNameRef.current.value;
 
-    const newCollection = {id: nanoid(), group: groupName, type: workoutType, groupID: nanoid()};
+    const newCollection = {group: groupName, type: workoutType, groupID: nanoid()};
     setCollectionState(newCollection);
 
     const response = fetch('http://localhost:4000/api/workouts/', {
@@ -50,17 +50,17 @@ function CollectionForm() {
   return (
     <>
       <form className='collection-form' onSubmit={createCollection}>
-        <label>Collection Name</label>
-        <input ref={groupNameRef}type='text'/>
+        <label className='top-label'>Collection Name</label>
+        <input placeholder='Collection Name' ref={groupNameRef}type='text'/>
 
-        <label>Collection Type</label>
-        <select>
-          <option ref={workoutTypeRef}>FullBody</option>
-          <option ref={workoutTypeRef}>UpperBody</option>
-          <option ref={workoutTypeRef}>LowerBody</option>
-          <option ref={workoutTypeRef}>Push</option>
-          <option ref={workoutTypeRef}>Pull</option>
-          <option ref={workoutTypeRef}>Other</option>
+        <label className='bot-label'>Collection Type</label>
+        <select ref={workoutTypeRef}>
+          <option>FullBody</option>
+          <option>UpperBody</option>
+          <option>LowerBody</option>
+          <option>Push</option>
+          <option>Pull</option>
+          <option>Other</option>
         </select>
 
         <button type='submit'>Create Collection</button>

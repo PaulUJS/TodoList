@@ -45,7 +45,6 @@ function SearchBar() {
 
   return (
     <>
-      <UserNavbar/>
       <div className='user-container'>
         <form className='search-form' onSubmit={searchCollections}>
           <label>Enter Collection ID</label>

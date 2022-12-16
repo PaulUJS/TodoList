@@ -29,7 +29,7 @@ const workoutSchema = new Schema({
         required: false
     },
     groupID: {
-        type: Number,
+        type: String,
         required: true
     }
 
