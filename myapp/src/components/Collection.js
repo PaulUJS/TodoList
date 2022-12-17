@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { Link, useMatch, useResolvedPath} from 'react-router-dom';
-import { Context } from '../context/CollectionContext';
+import React from 'react';
+import { isRouteErrorResponse, Link, useMatch, useResolvedPath} from 'react-router-dom';
 
 function Collection({ collection }) {
   return (
     <>
       <form className='collection-container'>
-        <CustomLink to='/collection'>
+        <CustomLink to={`/collection/${collection.group}/${collection.groupID}`}>
           <button type='submit' className='collection-container'>
             <h2>{collection.group}</h2>
             <p>{collection.groupID}</p>

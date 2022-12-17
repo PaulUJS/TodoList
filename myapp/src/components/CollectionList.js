@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 
 import { Context } from '../context/CollectionContext';
 import Collection from './Collection';
@@ -12,11 +12,13 @@ function CollectionList() {
   } else {
     return ( 
       collection.map(collections => {
+       if (!collections.name) {
         return (
           <>
             <Collection key={collections.id} collection={collections}/>
           </>
         )
+       }     
       })
     )
   }

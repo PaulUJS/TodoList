@@ -22,7 +22,7 @@ function App() {
           <Route path='/signin' element={<Signin/>} />
           <Route path='/register' element={<Registration/>} />
           <Route path='/userpage' element={<Userpage/>} />
-          <Route path='/collection' element={<WorkoutPage/>} />
+          <Route path='/collection/:group/:id' element={<WorkoutPage/>} />
           <Route path='/likedcollections'/>
           <Route path='/logout' element={<><UserNavbar/><div>hello</div></>}/>
           <Route path='/search' element={<SearchPage/>}/>
