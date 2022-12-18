@@ -5,7 +5,7 @@ import Collection from './Collection';
 
 function CollectionList() {
   const { collection, setCollection } = useContext(Context);
-  if ( collection.length === 0) {
+  if (collection.length === 0) {
     return (
       <div>No Current Collections</div>
     )

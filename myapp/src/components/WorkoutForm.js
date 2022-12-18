@@ -63,7 +63,9 @@ export default function WorkoutForm({ group, workoutID }) {
         <input ref={useRepsRef} type='number' required/>
 
         <button type='submit'>Create Workout</button>
+        {error && <div className='error'>{error}</div>}
       </form>
     </>
   )
 }
+

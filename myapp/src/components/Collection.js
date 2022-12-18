@@ -1,16 +1,17 @@
 import React from 'react';
-import { isRouteErrorResponse, Link, useMatch, useResolvedPath} from 'react-router-dom';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 function Collection({ collection }) {
   return (
     <>
       <form className='collection-container'>
         <CustomLink to={`/collection/${collection.group}/${collection.groupID}`}>
-          <button type='submit' className='collection-container'>
+          <button type='submit'>
             <h2>{collection.group}</h2>
-            <p>{collection.groupID}</p>
-            <p>{collection.type}</p>
-            <img src={process.env.PUBLIC_URL + '/hearticon.png'} />
+            <p>Workout Type: {collection.type}</p>
+            <p>Collection ID: {collection.groupID}</p>
+            <p>Created By: </p>
+            <p>0 Likes</p>
           </button>
         </CustomLink>
       </form>

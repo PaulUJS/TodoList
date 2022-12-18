@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Context } from "../context/CollectionContext";
 
 import Workout from './Workout';
@@ -12,10 +12,10 @@ export default function WorkoutList() {
   } else {
     return (
       collection.map(workout => {
-        if (workout.name != null) {
+        if (workout.name) {
           return (
             <>
-              <Workout key={workout.id} name={workout.name} weight={workout.weight} reps={workout.reps}/>
+              <Workout key={workout.id} workout={workout}/>
             </>
           )
         }

@@ -8,11 +8,12 @@ import UserNavbar from '../components/UserNavbar';
 
 function WorkoutPage() {
   const { collection, setCollection } = useContext(Context);
-
+  
   const { group, id } = useParams();
 
   useEffect(() => {
-    async function fetchWorkouts(e) {
+    
+    async function fetchWorkouts() {
       const response = fetch(`http://localhost:4000/api/collections/${id}`);
       const json = await response.json();
   
@@ -24,15 +25,16 @@ function WorkoutPage() {
   }, []);
 
   useEffect(() => {
-    setCollection([collection]);
-  }, [collection]);
+    setCollection(collection)
+  }, [collection])
 
   return (
     <>
       <UserNavbar/>
-      <h2>{id}</h2>
-      <h3>{group}</h3>
       <div className='user-container'>
+        <button type='submit' className='like-button'>
+            <img src={process.env.PUBLIC_URL + '/hearticon.png'} />
+        </button>
         <WorkoutList/>
         <WorkoutForm workoutID={id} group={group}/>
       </div>

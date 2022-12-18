@@ -1,16 +1,14 @@
 import React from 'react';
 
-export default function Workout({ name, weight, reps }) {
+export default function Workout({ workout }) {
   return (
-    <div className='collection-container'>
-      <h2>{name}</h2>
-
-      <label className='workout-label'>Weight:</label>
-      <p>{weight}</p>
-
-      <label className='workout-label'>Exercise Reps:</label>
-      <p>{reps}</p>
-    </div>
+    <>
+      <div className='workout-container'>
+        <h2>{workout.name}</h2>
+        <label className='workout-label'>Weight: {workout.weight} (lbs)</label>
+        <label className='workout-label'>Exercise Reps: {workout.reps}</label>
+      </div>
+    </>
   )
 }
 
