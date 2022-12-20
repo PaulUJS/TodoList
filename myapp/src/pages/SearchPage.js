@@ -5,7 +5,6 @@ import UserNavbar from '../components/UserNavbar';
 import CollectionList from '../components/CollectionList';
 
 function SearchPage() {
-
 	return (
 		<>
 			<UserNavbar/>

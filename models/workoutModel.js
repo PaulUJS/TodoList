@@ -31,8 +31,11 @@ const workoutSchema = new Schema({
     groupID: {
         type: String,
         required: true
+    },
+    likes: {
+        type: Number,
+        required: false
     }
-
 }, { timestamps: true});
 
 module.exports = mongoose.model('Workout', workoutSchema);

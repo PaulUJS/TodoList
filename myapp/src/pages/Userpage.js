@@ -22,9 +22,6 @@ export default function Userpage() {
     fetchCollection();
   }, []);
 
-  useEffect(() => {
-    setCollection(collection)
-  }, [collection])
 
   return (
       <>

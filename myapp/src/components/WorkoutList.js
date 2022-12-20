@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from "../context/CollectionContext";
 
 import Workout from './Workout';
 
 export default function WorkoutList() {
   const { collection, setCollection } = useContext(Context);
-  if (collection.length === 0) {
+  if (collection.length <= 1) {
     return (
       <div>No Workouts in this colletion yet</div>
     )
@@ -23,4 +23,3 @@ export default function WorkoutList() {
     )
   }
 }
-
