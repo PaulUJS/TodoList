@@ -18,7 +18,7 @@ function CollectionForm() {
     const workoutType = workoutTypeRef.current.value;
     const groupName = groupNameRef.current.value;
 
-    const newCollection = {group: groupName, type: workoutType, groupID: nanoid()};
+    const newCollection = {group: groupName, type: workoutType, groupID: nanoid(), likes: '0'};
     setCollectionState(newCollection);
 
     const response = fetch('http://localhost:4000/api/workouts/', {

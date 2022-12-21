@@ -7,6 +7,7 @@ export default function Workout({ workout }) {
         <h2>{workout.name}</h2>
         <label className='workout-label'>Weight: {workout.weight} (lbs)</label>
         <label className='workout-label'>Exercise Reps: {workout.reps}</label>
+        <label className='workout-label'>Exercise Sets: {workout.sets}</label>
       </div>
     </>
   )

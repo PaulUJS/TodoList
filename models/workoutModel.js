@@ -24,6 +24,10 @@ const workoutSchema = new Schema({
         type: Number,
         required: false
     },
+    sets: {
+        type: Number,
+        required: false
+    },
     userID: {
         type: Number,
         required: false

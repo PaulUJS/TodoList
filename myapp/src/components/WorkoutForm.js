@@ -2,12 +2,13 @@ import React, { useState, useRef, useContext, useEffect } from 'react';
 
 import { Context as CollectionContext } from '../context/CollectionContext';
 
-export default function WorkoutForm({ group, workoutID }) {
+export default function WorkoutForm({ group, id }) {
 
   // Allows me to access the input fields
   const useNameRef = useRef();
   const useWeightRef = useRef();
   const useRepsRef = useRef();
+  const useSetsRef = useRef();
 
   const { collection, setCollection } = useContext(CollectionContext);
   const [collectionState, setCollectionState] = useState([]);
@@ -19,8 +20,9 @@ export default function WorkoutForm({ group, workoutID }) {
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
+    const sets = useSetsRef.current.value;
 
-    const workout = {group: group, name: name, weight: weight, reps: reps, groupID: workoutID};
+    const workout = {group: group, name: name, weight: weight, reps: reps, sets: sets, groupID: id};
     setCollectionState(workout);
 
     // Sends a post request to the backend api to add the workout to the db
@@ -41,6 +43,7 @@ export default function WorkoutForm({ group, workoutID }) {
       useNameRef.current.value = null;
       useWeightRef.current.value = null;
       useRepsRef.current.value = null;
+      useSetsRef.current.value = null;
       setError(null);
     }
   };
@@ -61,6 +64,9 @@ export default function WorkoutForm({ group, workoutID }) {
 
         <label>Weight(lbs)</label>
         <input ref={useRepsRef} type='number' required/>
+
+        <label>Amount of Sets</label>
+        <input ref={useSetsRef} type='number' required/>
 
         <button type='submit'>Create Workout</button>
         {error && <div className='error'>{error}</div>}

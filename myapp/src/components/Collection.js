@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect  } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 function Collection({ collection }) {
@@ -11,7 +11,7 @@ function Collection({ collection }) {
             <p>Workout Type: {collection.type}</p>
             <p>Collection ID: {collection.groupID}</p>
             <p>Created By: </p>
-            <p>0 Likes</p>
+            <p>{collection.likes} Likes</p>
           </button>
         </CustomLink>
       </form>
