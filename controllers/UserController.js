@@ -8,7 +8,7 @@ const express = require("express");
 const app = express();
 
 async function createUser(req,res) {
-  const { email, password } = req.body;
+  const { email, password, displayName } = req.body;
 
   const saltRounds = 10;
   const hashedPass = await bcrypt.hash(password, saltRounds);
@@ -17,11 +17,19 @@ async function createUser(req,res) {
     {email: email}
   );
 
+  const checkName = await User.findOne(
+    {displayName: displayName}
+  );
+
   if (checkEmail) {
     console.log('Email already in use');
     res.status(404);
-  } else if (!checkEmail) {
-    const newUser = await User.create({email: email, password: hashedPass});
+  } 
+  if (checkName) {
+    console.log('Display Name already in use');
+    res.status(404)
+  } else if (!checkEmail || checkName) {
+    const newUser = await User.create({displayName: displayName, email: email, password: hashedPass});
     res.status(200).json(newUser);
   }
 };

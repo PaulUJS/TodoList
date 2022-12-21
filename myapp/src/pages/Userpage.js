@@ -22,11 +22,6 @@ export default function Userpage() {
     fetchCollection();
   }, []);
 
-  useEffect(() => {
-    console.log(collection)
-  }, [collection])
-
-
   return (
       <>
         <UserNavbar/>
