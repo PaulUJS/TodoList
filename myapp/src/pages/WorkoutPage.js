@@ -8,10 +8,11 @@ import WorkoutList from '../components/WorkoutList'
 import UserNavbar from '../components/UserNavbar';
 
 function WorkoutPage() {
-  const [likes, setLikes] = useState('');
-  const { setCollection } = useContext(Context);
+  const { collection, setCollection } = useContext(Context);
   const { group, id } = useParams();
   const { setSession } = useContext(SessionContext);
+
+  const [likes, setLikes] = useState(0);
 
   useEffect(() => {
     const sessionStorage = localStorage.getItem('session');
@@ -29,18 +30,23 @@ function WorkoutPage() {
     fetchWorkouts();
   }, []);
 
-  async function likeButton() {
-    console.log(`likes ${likes}`);
-  };
+  useEffect(() => {
+    collection.map(workouts => {
+      if (workouts.workouts != null) {
+        setCollection(workouts.workouts);
+      }
+    })
+  }, [collection])
+
 
   return (
     <>
       <UserNavbar/>
       <div className='user-container'>
-        <button type='submit' className='like-button' onClick={likeButton}>
+        <button type='submit' className='like-button'>
             <img src={process.env.PUBLIC_URL + '/hearticon.png'} />
         </button>
-        <WorkoutList likes={likes}/>
+        <WorkoutList/>
         <WorkoutForm id={id} group={group}/>
       </div>
     </>

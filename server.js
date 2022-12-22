@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const workoutRoutes = require('./routes/workoutRoutes');
 const userRoutes = require('./routes/userRoutes');
 const collectionRoutes = require('./routes/collectionRoutes');
 const mongoose = require('mongoose');
@@ -38,8 +37,6 @@ app.use('/', (req,res,next) => {
 
 // Routes
 app.use('/api/collections', collectionRoutes)
-
-app.use('/api/workouts', workoutRoutes);
 
 app.use('/api/user', userRoutes);
 

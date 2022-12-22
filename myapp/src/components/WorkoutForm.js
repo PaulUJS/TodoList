@@ -22,12 +22,12 @@ export default function WorkoutForm({ group, id }) {
     const weight = useRepsRef.current.value;
     const sets = useSetsRef.current.value;
 
-    const workout = {group: group, name: name, weight: weight, reps: reps, sets: sets, groupID: id};
+    const workout = {workouts: {name: name, weight: weight, reps: reps, sets: sets}, groupID: id};
     setCollectionState(workout);
 
     // Sends a post request to the backend api to add the workout to the db
-    const response = fetch('http://localhost:4000/api/workouts/', {
-      method: 'POST',
+    const response = fetch('http://localhost:4000/api/collections/newworkout', {
+      method: 'PUT',
       body: JSON.stringify(workout),
       headers: {
         'Content-Type': 'application/json'

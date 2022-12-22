@@ -6,37 +6,25 @@ const Schema = mongoose.Schema;
 const workoutSchema = new Schema({
     group: {
         type: String,
-        required: true
+        required: false
     },
     type: {
         type: String,
         required: false
     },
-    name: {
+    workouts: {
+        type: Array,
+        required: false
+    },
+    groupID: {
         type: String,
-        required: false
-    },
-    weight: {
-        type: Number,
-        required: false
-    },
-    reps: {
-        type: Number,
-        required: false
-    },
-    sets: {
-        type: Number,
         required: false
     },
     userID: {
         type: String,
-        required: false
+        required: true
     },
     username: {
-        type: String,
-        required: false
-    },
-    groupID: {
         type: String,
         required: true
     },
