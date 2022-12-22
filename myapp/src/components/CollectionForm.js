@@ -1,9 +1,13 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { nanoid } from 'nanoid';
-
+import { Context as SessionContext } from '../context/SessionContext';
 import { Context } from '../context/CollectionContext';
 
 function CollectionForm() {
+  const { session, setSession } = useContext(SessionContext);
+  const sessionStorage = localStorage.getItem('session');
+  const user = JSON.parse(sessionStorage);
+
   const workoutTypeRef = useRef();
   const groupNameRef = useRef();
 
@@ -18,10 +22,10 @@ function CollectionForm() {
     const workoutType = workoutTypeRef.current.value;
     const groupName = groupNameRef.current.value;
 
-    const newCollection = {group: groupName, type: workoutType, groupID: nanoid(), likes: '0'};
+    const newCollection = {group: groupName, type: workoutType, groupID: nanoid(), likes: '0', userID: user._id, username: user.displayName};
     setCollectionState(newCollection);
 
-    const response = fetch('http://localhost:4000/api/workouts/', {
+    const response = await fetch('http://localhost:4000/api/workouts/', {
       method: 'POST',
       body: JSON.stringify(newCollection),
       headers: {

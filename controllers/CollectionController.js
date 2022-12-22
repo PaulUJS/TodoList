@@ -2,7 +2,8 @@ const Workout = require('../models/workoutModel');
 const mongoose = require('mongoose');
 
 async function getUserCollections(req,res) {
-  const collection = await Workout.find().sort({createdAt: -1});
+  const { userID } = req.params;
+  const collection = await Workout.find({userID: userID}).sort({createdAt: -1});
   return res.status(200).json(collection);
 }
 

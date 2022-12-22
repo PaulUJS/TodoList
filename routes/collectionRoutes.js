@@ -8,7 +8,7 @@ const {
 
 const router = express.Router();
 
-router.get('/', getUserCollections);
+router.get('/user/:userID', getUserCollections);
 
 router.get('/:groupID', getCollection);
 

@@ -32,6 +32,7 @@ export default function Signin() {
 
     if (response.ok) {
       setSession(json);
+      localStorage.setItem('session', JSON.stringify(json));
       emailRef.current.value = null;
       passRef.current.value = null;
       navigate('/userpage');

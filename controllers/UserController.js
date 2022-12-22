@@ -54,12 +54,33 @@ async function validateUser(req,res) {
   }
 };
 
-async function logoutUser(req,res) {
-  
+async function updateUserLikes(req,res) {
+  const { _id, likes } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).json({error: 'no user found'});
+  } else {
+    const updateUser = await User.findOneAndUpdate({_id: _id}, {
+      $push: {likes: likes}
+    });
+  }
+  res.status(200);
+};
+
+async function getUserLikes(req,res) {
+  const { _id } = req.body;
+
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).json({error: 'no user found'});
+  } else {
+    const findUserLikes = await User.findById(_id);
+    res.status(200).json(findUserLikes);
+  }
 }
 
 module.exports = {
   createUser,
   validateUser,
-  logoutUser
+  updateUserLikes,
+  getUserLikes
 };

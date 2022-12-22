@@ -4,15 +4,18 @@ const express = require('express');
 const {
   createUser,
   validateUser,
-  logoutUser
+  updateUserLikes,
+  getUserLikes
 } = require('../controllers/userController');
 
 const router = express.Router();
+
+router.get('/likes', getUserLikes);
 
 router.post('/register', createUser);
 
 router.post('/validate', validateUser);
 
-router.get('/logout', logoutUser);
+router.put('/updateLikes', updateUserLikes);
 
 module.exports = router;

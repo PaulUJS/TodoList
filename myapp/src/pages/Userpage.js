@@ -6,13 +6,17 @@ import CollectionList from '../components/CollectionList'
 import UserNavbar from '../components/UserNavbar';
 
 export default function Userpage() {
-  const { collection, setCollection } = useContext(Context);
-  const { session, setSession } = useContext(SessionContext);
+  const { setCollection } = useContext(Context);
+  const { setSession } = useContext(SessionContext);
   
   useEffect(() => {
+    const sessionStorage = localStorage.getItem('session');
+    const user = JSON.parse(sessionStorage);
+    setSession(user);
+
     async function fetchCollection() {
       // Grabs the workouts from the db and stores them in the json variable
-      const response = await fetch(`http://localhost:4000/api/collections/`);
+      const response = await fetch(`http://localhost:4000/api/collections/user/${user._id}`);
       const json = await response.json();
   
       if (response.ok) {

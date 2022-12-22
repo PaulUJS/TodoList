@@ -11,6 +11,7 @@ import ResultsPage from './pages/ResultsPage';
 import UserNavbar from './components/UserNavbar';
 import SearchPage from './pages/SearchPage';
 import WorkoutPage from './pages/WorkoutPage';
+import Logout from './components/Logout';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
           <Route path='/userpage' element={<Userpage/>} />
           <Route path='/collection/:group/:id' element={<WorkoutPage/>} />
           <Route path='/likedcollections'/>
-          <Route path='/logout' element={<><UserNavbar/><div>hello</div></>}/>
+          <Route path='/logout' element={<Logout/>}/>
           <Route path='/search' element={<SearchPage/>}/>
           <Route path='/searchresults' element={<ResultsPage/>} />
         </Routes>

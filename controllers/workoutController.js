@@ -28,12 +28,11 @@ async function getSingleWorkout(req,res) {
 
 // Create and save workout
 async function createWorkout(req,res) {
-  const {group, type, name, weight, reps, sets, likes, groupID} = req.body;
-  const userID = '';
+  const {group, type, name, weight, reps, sets, likes, groupID, userID, username} = req.body;
 
   // adds workout to db
   try {
-    const workout = await Workout.create({group, type, name, weight, reps, sets, likes, groupID});
+    const workout = await Workout.create({group, type, name, weight, reps, sets, likes, groupID, userID, username});
     res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({error: error.message});

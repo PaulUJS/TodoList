@@ -10,7 +10,7 @@ function Collection({ collection }) {
             <h2>{collection.group}</h2>
             <p>Workout Type: {collection.type}</p>
             <p>Collection ID: {collection.groupID}</p>
-            <p>Created By: </p>
+            <p>Created By: {collection.username} </p>
             <p>{collection.likes} Likes</p>
           </button>
         </CustomLink>
