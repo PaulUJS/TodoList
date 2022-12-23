@@ -31,6 +31,10 @@ const workoutSchema = new Schema({
     likes: {
         type: Number,
         required: false
+    },
+    likedBy: {
+        type: Array,
+        required: false
     }
 }, { timestamps: true});
 

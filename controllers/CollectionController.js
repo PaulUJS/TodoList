@@ -7,7 +7,7 @@ async function createCollection(req,res) {
 
   // adds workout to db
   try {
-    const workout = await Workout.create({group, type, groupID, userID, username, likes});
+    const workout = await Workout.create({group, type, groupID, userID, username, likes, likedBy});
     res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({error: error.message});
@@ -68,10 +68,21 @@ async function deleteCollection(req,res) {
 }
 
 async function addLike(req,res) {
-  const { groupID, likes } = req.body;
+  const { groupID, likes, userID } = req.body;
   
   const collection = await Workout.findOneAndUpdate({groupID: groupID}, {
-    likes: likes
+    likes: likes,
+    $push: {likedBy: userID}
+  });
+  return res.status(200).json(collection);
+}
+
+async function removeLike(req,res) {
+  const { groupID, userID, likes } = req.body;
+
+  const collection = await Workout.findOneAndUpdate({groupID: groupID}, {
+    likes: likes,
+    $pull: {likedBy: userID}
   });
   return res.status(200).json(collection);
 }
@@ -82,5 +93,6 @@ module.exports = {
   getUserCollections,
   addLike,
   createWorkout,
-  createCollection
+  createCollection,
+  removeLike
 }
