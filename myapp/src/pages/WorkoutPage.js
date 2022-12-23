@@ -12,6 +12,52 @@ function WorkoutPage() {
   const { group, id } = useParams();
   const { setSession } = useContext(SessionContext);
 
+  async function fetchAPIAdd(method, body, url) {
+    const sessionStorage = localStorage.getItem('session');
+    const user = JSON.parse(sessionStorage);
+    let likes = JSON.parse(localStorage.getItem('likes'));
+
+    const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
+        method: method,
+        body: JSON.stringify(body),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    const liked = {_id: user._id, likes: likes[0]}
+    const userResponse = await fetch(`http://localhost:4000/api/user/updatelikes`, {
+      method: method,
+      body: JSON.stringify(liked),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } 
+
+  async function fetchAPIRemove(method, body, url) {
+    const sessionStorage = localStorage.getItem('session');
+    const user = JSON.parse(sessionStorage);
+    let likes = JSON.parse(localStorage.getItem('likes'));
+    
+    const unliked = {_id: user._id, groupID: id}
+
+    const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
+      method: method,
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const userResponse = await fetch(`http://localhost:4000/api/user/removeuserlike`, {
+      method: method,
+      body: JSON.stringify(unliked),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
   useEffect(() => {
     const sessionStorage = localStorage.getItem('session');
     const user = JSON.parse(sessionStorage);
@@ -47,14 +93,7 @@ function WorkoutPage() {
       likes[0].likedBy = [user._id];
       localStorage.setItem('likes', JSON.stringify(likes));
       const body = {groupID: id, likes: likes[0].likes, userID: user._id};
-
-      const response = await fetch(`http://localhost:4000/api/collections/newlike`, {
-        method: 'PUT',
-        body: JSON.stringify(body),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+      fetchAPIAdd('put', body, 'newlike');
     } else {
       for (let x in likes[0].likedBy) {
         console.log('for loop')
@@ -63,14 +102,7 @@ function WorkoutPage() {
           likes[0].likedBy = [];
           localStorage.setItem('likes', JSON.stringify(likes));
           const body = {groupID: id, likes: likes[0].likes, userID: user._id};
-  
-          const response = await fetch(`http://localhost:4000/api/collections/removelike`, {
-            method: 'PUT',
-            body: JSON.stringify(body),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          });
+          fetchAPIRemove('put', body, 'removelike');
         } 
   
         if (x != user._id) {
@@ -78,14 +110,7 @@ function WorkoutPage() {
           likes[0].likedBy = [user._id]
           localStorage.setItem('likes', JSON.stringify(likes));
           const body = {groupID: id, likes: likes[0].likes, userID: user._id};
-  
-          const response = await fetch(`http://localhost:4000/api/collections/newlike`, {
-            method: 'PUT',
-            body: JSON.stringify(body),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
+          fetchAPIAdd('put', body, 'newlike');
         }
       }
     }

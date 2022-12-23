@@ -7,7 +7,7 @@ async function createCollection(req,res) {
 
   // adds workout to db
   try {
-    const workout = await Workout.create({group, type, groupID, userID, username, likes, likedBy});
+    const workout = await Workout.create({group, type, groupID, userID, username, likes});
     res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({error: error.message});
@@ -37,21 +37,24 @@ async function getUserCollections(req,res) {
 }
 
 async function getCollection(req,res) {
-  const { groupID, type } = req.params;
+  const { groupID } = req.params;
 
-  if (groupID && type) {
-    const collection = await Workout.find({groupID: groupID, type: type}).sort({createdAt: -1});
-    return res.status(200).json(collection);
-  }
-  if (groupID && !type) {
+
+  if (groupID) {
     const collection = await Workout.find({groupID: groupID}).sort({createdAt: -1});
     return res.status(200).json(collection);
+  } else {
+    return res.status(404).json({error: 'Cannot find this collection'});
   }
-  if (type && !groupID) {
-    const collection = Workout.find({type: type}).sort({createdAt: -1});
-    res.send(200).json(collection);
-  }
-  else {
+}
+
+async function getCollectionByType(req,res) {
+  const { type } = req.params;
+  
+  if (type) {
+    const collection = await Workout.find({type: type}).sort({createdAt: -1});
+    return res.status(200).json(collection);
+  } else {
     return res.status(404).json({error: 'Cannot find this collection'});
   }
 }
@@ -94,5 +97,6 @@ module.exports = {
   addLike,
   createWorkout,
   createCollection,
-  removeLike
+  removeLike,
+  getCollectionByType
 }

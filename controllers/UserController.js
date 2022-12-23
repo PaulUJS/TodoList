@@ -67,6 +67,19 @@ async function updateUserLikes(req,res) {
   res.status(200);
 };
 
+async function removeUserLike(req,res) {
+  const {_id, groupID} = req.body;
+  
+  if (!mongoose.Types.ObjectId.isValid(_id)) {
+    return res.status(404).json({error: 'no user found'});
+  } else {
+    const updateUser = await User.findOneAndUpdate({_id: _id}, {
+      $pull: {likes: {groupID: groupID}}
+    });
+  }
+  res.status(200);
+}
+
 async function getUserLikes(req,res) {
   const { _id } = req.body;
 
@@ -82,5 +95,6 @@ module.exports = {
   createUser,
   validateUser,
   updateUserLikes,
-  getUserLikes
+  getUserLikes,
+  removeUserLike
 };

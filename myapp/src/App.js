@@ -8,10 +8,10 @@ import Userpage from './pages/Userpage';
 import Main from './pages/Main';
 import Registration from './pages/Registration';
 import ResultsPage from './pages/ResultsPage';
-import UserNavbar from './components/UserNavbar';
 import SearchPage from './pages/SearchPage';
 import WorkoutPage from './pages/WorkoutPage';
 import Logout from './components/Logout';
+import LikedCollections from './pages/LikedCollections';
 
 function App() {
 
@@ -24,7 +24,7 @@ function App() {
           <Route path='/register' element={<Registration/>} />
           <Route path='/userpage' element={<Userpage/>} />
           <Route path='/collection/:group/:id' element={<WorkoutPage/>} />
-          <Route path='/likedcollections'/>
+          <Route path='/likedcollections' element={<LikedCollections/>}/>
           <Route path='/logout' element={<Logout/>}/>
           <Route path='/search' element={<SearchPage/>}/>
           <Route path='/searchresults' element={<ResultsPage/>} />

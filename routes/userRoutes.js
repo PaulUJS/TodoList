@@ -5,7 +5,8 @@ const {
   createUser,
   validateUser,
   updateUserLikes,
-  getUserLikes
+  getUserLikes,
+  removeUserLike
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -16,6 +17,8 @@ router.post('/register', createUser);
 
 router.post('/validate', validateUser);
 
-router.put('/updateLikes', updateUserLikes);
+router.put('/updatelikes', updateUserLikes);
+
+router.put('/removeuserlike', removeUserLike);
 
 module.exports = router;
