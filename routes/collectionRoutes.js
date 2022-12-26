@@ -21,7 +21,7 @@ router.get('/user/:userID', getUserCollections);
 
 router.get('/:groupID', getCollection);
 
-router.get('/typesearch', getCollectionByType);
+router.get('/typesearch/:type', getCollectionByType);
 
 router.put('/newlike', addLike);
 

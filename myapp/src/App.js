@@ -12,6 +12,7 @@ import SearchPage from './pages/SearchPage';
 import WorkoutPage from './pages/WorkoutPage';
 import Logout from './components/Logout';
 import LikedCollections from './pages/LikedCollections';
+import TypeSearch from './pages/TypeSearch';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Route path='/logout' element={<Logout/>}/>
           <Route path='/search' element={<SearchPage/>}/>
           <Route path='/searchresults' element={<ResultsPage/>} />
+          <Route path='/typesearch' element={<TypeSearch/>} />
         </Routes>
       </div>
     </>

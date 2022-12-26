@@ -208,6 +208,25 @@ body {
   grid-row: 2;
 }
 
+.custom-link {
+  list-style: none;
+  text-decoration: none;
+
+  grid-column: 6;
+  grid-row: 5;
+  position: fixed;
+  z-index: 1;
+  right: 55px;
+  top: 325px;
+
+  margin-top: 15px;
+}
+
+.user-container a {
+  font-size: 25px;
+  color: black;
+}
+
 .like-button {
   grid-column: 1;
   grid-row: 1;

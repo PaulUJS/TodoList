@@ -42,7 +42,7 @@ function CollectionForm() {
     if (response.ok) {
       groupNameRef.current.value = null;
       workoutTypeRef.current.value = null;
-      setError(null);
+      setError(null); 
     }
   };
 

@@ -2,8 +2,8 @@ import React, { useRef, useState, useContext, useEffect } from 'react';
 import { Context } from '../context/CollectionContext';
 import { Context as SessionContext } from '../context/SessionContext';
 
-function SearchBar() {
-  const groupIDRef = useRef();
+function TypeSearchBar() {
+  const typeRef = useRef();
 
   const { collection, setCollection } = useContext(Context);
   const [collectionState, setCollectionState] = useState([]);
@@ -11,15 +11,13 @@ function SearchBar() {
 
   async function searchCollections(e) {
     e.preventDefault();
-    const groupID = groupIDRef.current.value;
-    const group = {groupID: groupID};
+    const type = typeRef.current.value;
 
-    const response = await fetch(`http://localhost:4000/api/collections/${groupID}`);
+    const response = await fetch(`http://localhost:4000/api/collections/typesearch/${type}`, {type: type});
     const json = await response.json();
 
     if (response.ok) {
       setCollectionState(json);
-      groupIDRef.current.value = null;
     }
   };
 
@@ -37,12 +35,19 @@ function SearchBar() {
   return (
     <>
       <form className='search-form' onSubmit={searchCollections}>
-        <label>Enter Collection ID</label>
-        <input placeholder='Collection-ID'  className='search-input' ref={groupIDRef}/>
+        <label>Enter Workout Type</label>
+        <select ref={typeRef}>
+          <option>FullBody</option>
+          <option>UpperBody</option>
+          <option>LowerBody</option>
+          <option>Push</option>
+          <option>Pull</option>
+          <option>Other</option>
+        </select>
         <button className='search-button' type='submit'>Search</button>
       </form>
     </>
   )
 }
 
-export default SearchBar;
+export default TypeSearchBar
