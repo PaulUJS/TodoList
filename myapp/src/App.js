@@ -18,7 +18,6 @@ function App() {
 
   return (
     <>
-      <div className='container'>
         <Routes>
           <Route path='/' element={<Main/>} />
           <Route path='/signin' element={<Signin/>} />
@@ -31,7 +30,6 @@ function App() {
           <Route path='/searchresults' element={<ResultsPage/>} />
           <Route path='/typesearch' element={<TypeSearch/>} />
         </Routes>
-      </div>
     </>
   )
 }

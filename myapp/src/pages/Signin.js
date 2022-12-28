@@ -3,8 +3,6 @@ import { Link, useMatch, useResolvedPath, redirect, useNavigate } from 'react-ro
 
 import { Context } from '../context/SessionContext';
 
-import Navbar from '../components/Navbar';
-
 export default function Signin() {
 
   const emailRef = useRef();
@@ -41,7 +39,6 @@ export default function Signin() {
 
   return (
     <>
-      <Navbar/>
       <div className='regi-container'>
         <form className='regi-form' onSubmit={validateUser}>
           <h1>Sign In</h1>
