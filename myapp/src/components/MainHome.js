@@ -14,7 +14,7 @@ function MainHome() {
         </div>
         <h2>Learn from others and become a happier healthier version of you</h2>
         <div className='link-1'><CustomLink to='/register'><button>Sign Up</button></CustomLink></div>
-        <div className='link-2'><CustomLink to='/signin'><p>Already have an account</p></CustomLink></div>
+        <div className='link-2'><CustomLink to='/signin'>Already have an account</CustomLink></div>
       </div>
     </>
   )

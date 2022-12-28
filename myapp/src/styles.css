@@ -75,12 +75,17 @@ a:hover {
 
 
 .link-2 {
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row: 5;
   grid-column: 2;
-
+  align-self: center;
+  margin-left: 35px;
   width: fit-content;
-  height: 10px;
+  height: 30px;
+}
+
+.link-2 li {
+  width: 217px;
+  height: 30px;
 }
 
 .home-container button {
@@ -337,9 +342,11 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-color:aqua;
 
   min-height: 100vh;
   min-width: 100vh;
+
 }
 
 .regi-form {
@@ -347,10 +354,36 @@ a:hover {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-color:aqua;
+  background-color:white;
   
   height: 50vh;
   width: 50vh;
+  border-radius: 25px;
+}
+
+.regi-form label {
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.regi-form input {
+  width: 250px;
+  height: 50px;
+  border-radius: 15px;
+  border: 1px solid black;
+}
+
+.regi-form button {
+  width: 125px;
+  height: 50px;
+  border-radius: 15px;
+  background-color: white;
+  border: 2px solid black;
+  margin-top: 10px;
+}
+
+.regi-form button:hover {
+  background-color: green;
 }
 
 /* Userpage Component */
@@ -363,6 +396,8 @@ a:hover {
   grid-template-rows: repeat(auto-fit, 250px);
   min-height: 100vh;
   min-width: 100vh;
+
+  background-color: white;
 }
 
 .user-container h2 {
@@ -373,20 +408,6 @@ a:hover {
 .user-container h3 {
   grid-column: 1;
   grid-row: 2;
-}
-
-.custom-link {
-  list-style: none;
-  text-decoration: none;
-
-  grid-column: 6;
-  grid-row: 5;
-  position: fixed;
-  z-index: 1;
-  right: 55px;
-  top: 325px;
-
-  margin-top: 15px;
 }
 
 .user-container a {
@@ -402,10 +423,15 @@ a:hover {
   border-style: none;
 
   margin-top: 15px;
-  width: 40px;
-  height: 10px;
+  width: 48px;
+  height: 48px;
+
+
 }
 
+.like-button img {
+  filter: invert(26%) sepia(67%) saturate(7479%) hue-rotate(354deg) brightness(106%) contrast(134%);
+}
 
 /* CollectionForm Component */
 
