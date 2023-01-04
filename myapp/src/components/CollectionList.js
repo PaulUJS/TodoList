@@ -18,7 +18,7 @@ function CollectionList() {
        if (!collections.name) {
         return (
           <>
-            <Collection key={collections.id} collection={collections}/>
+            <Collection key={collections.groupID} collection={collections}/>
           </>
         )
        }     

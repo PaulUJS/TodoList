@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function LikeButton() {
+function LikeButton({active}) {
   const { id } = useParams();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(active);
+
+  const sessionStorage = localStorage.getItem('session');
+  const user = JSON.parse(sessionStorage);
+  let likes = JSON.parse(localStorage.getItem('likes'));
 
   async function fetchAPIAdd(method, body, url) {
-    const sessionStorage = localStorage.getItem('session');
-    const user = JSON.parse(sessionStorage);
-    let likes = JSON.parse(localStorage.getItem('likes'));
-
     const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
         method: method,
         body: JSON.stringify(body),
@@ -28,10 +28,6 @@ function LikeButton() {
   } 
 
   async function fetchAPIRemove(method, body, url) {
-    const sessionStorage = localStorage.getItem('session');
-    const user = JSON.parse(sessionStorage);
-    let likes = JSON.parse(localStorage.getItem('likes'));
-    
     const unliked = {_id: user._id, groupID: id}
 
     const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
@@ -52,9 +48,6 @@ function LikeButton() {
   }
 
   async function likeButton() {
-    const sessionStorage = localStorage.getItem('session');
-    const user = JSON.parse(sessionStorage);
-    let likes = JSON.parse(localStorage.getItem('likes'));
     setIsActive(current => !current);
 
     if (likes[0].likedBy.length == 0) {
@@ -87,9 +80,11 @@ function LikeButton() {
 
   return (
     <>
-      <button type='submit' className='like-button' onClick={likeButton}>
-        <img style={{}} src={process.env.PUBLIC_URL + '/hearticon.png'} />
-      </button>
+      <div>
+      <button type='submit' className='like-button' onClick={likeButton}
+        style={{ backgroundColor: isActive ? "Red" : "Black" }}
+      />
+      </div>
     </>
   )
 }
