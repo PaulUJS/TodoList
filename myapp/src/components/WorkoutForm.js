@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
-
+import { nanoid } from 'nanoid';
 import { Context as CollectionContext } from '../context/CollectionContext';
 
 export default function WorkoutForm({ group, id }) {
@@ -16,13 +16,13 @@ export default function WorkoutForm({ group, id }) {
 
   async function sendWorkout(e) {
     e.preventDefault();
-
+    
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
     const sets = useSetsRef.current.value;
 
-    const workout = {workouts: {name: name, weight: weight, reps: reps, sets: sets}, groupID: id};
+    const workout = {workouts: {name: name, weight: weight, reps: reps, sets: sets, workoutID: nanoid()}, groupID: id};
     setCollectionState(workout);
 
     // Sends a post request to the backend api to add the workout to the db
@@ -50,7 +50,7 @@ export default function WorkoutForm({ group, id }) {
 
   // Everytime the workoutState is changed it updates the global context to match
   useEffect(() => {
-    setCollection([...collection, collectionState])
+    return setCollection([...collection, collectionState]);
   }, [collectionState]);
 
   return (

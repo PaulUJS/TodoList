@@ -90,6 +90,22 @@ async function removeLike(req,res) {
   return res.status(200).json(collection);
 }
 
+async function editWorkout(req,res) {
+  const { workouts, workoutID, groupID } = req.body;
+
+  const workout = await Workout.findOneAndUpdate(
+    {workouts: {workoutID: workoutID},
+    $set: {'workouts.name': workouts.name, 'workouts.weight': workouts.weight, 'workouts.reps': workouts.reps, 'workouts.sets': workouts.sets}   
+  })
+  const updatedWorkout = await Workout.updateOne()
+  
+  return res.status(200).json(workout);
+}
+
+async function deleteWorkout(req,res) {
+  const { workoutID } = req.params;
+}
+
 module.exports = {
   getCollection,
   deleteCollection,
@@ -98,5 +114,7 @@ module.exports = {
   createWorkout,
   createCollection,
   removeLike,
-  getCollectionByType
+  getCollectionByType,
+  editWorkout,
+  deleteWorkout
 }

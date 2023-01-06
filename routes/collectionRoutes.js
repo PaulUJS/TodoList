@@ -8,7 +8,9 @@ const {
   createCollection,
   createWorkout,
   removeLike,
-  getCollectionByType
+  getCollectionByType,
+  editWorkout,
+  deleteWorkout
 } = require('../controllers/CollectionController');
 
 const router = express.Router();
@@ -26,6 +28,10 @@ router.get('/typesearch/:type', getCollectionByType);
 router.put('/newlike', addLike);
 
 router.put('/removelike', removeLike);
+
+router.put('/editworkout', editWorkout);
+
+router.delete('/deleteworkout/:workoutID', deleteWorkout);
 
 router.delete('/:groupID', deleteCollection);
 

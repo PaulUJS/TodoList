@@ -2,8 +2,7 @@ import React from 'react';
 
 import TypeSearchBar from '../components/TypeSearchBar';
 import UserNavbar from '../components/UserNavbar';
-import CollectionList from '../components/CollectionList';
-
+import CollectionList from '../components/CollectionList'
 
 function TypeSearch() {
   return (
