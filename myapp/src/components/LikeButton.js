@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function LikeButton({active}) {
+function LikeButton() {
   const { id } = useParams();
-  const [isActive, setIsActive] = useState(active);
-
+  
   const sessionStorage = localStorage.getItem('session');
   const user = JSON.parse(sessionStorage);
   let likes = JSON.parse(localStorage.getItem('likes'));
@@ -48,8 +47,6 @@ function LikeButton({active}) {
   }
 
   async function likeButton() {
-    setIsActive(current => !current);
-
     if (likes[0].likedBy.length == 0) {
       likes[0].likes += 1;
       likes[0].likedBy = [user._id];
@@ -81,9 +78,7 @@ function LikeButton({active}) {
   return (
     <>
       <div>
-      <button type='submit' className='like-button' onClick={likeButton}
-        style={{ backgroundColor: isActive ? "Red" : "Black" }}
-      />
+      <button type='submit' className='like-button' onClick={likeButton}/>
       </div>
     </>
   )

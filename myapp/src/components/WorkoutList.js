@@ -8,9 +8,7 @@ export default function WorkoutList() {
   return (
     collection.map(exercises => {
       return (
-        <>
           <Workout key={exercises._id} workout={exercises} />
-        </>
       )
     })
   )

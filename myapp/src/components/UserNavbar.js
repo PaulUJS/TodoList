@@ -12,7 +12,6 @@ export default function UserNavbar() {
         <Link to='/userpage' className='site-title'>{session.displayName}</Link>
         <ul>
           <CustomLink to='/search'><button className='nav-button'>Search</button></CustomLink>
-          <CustomLink to='/likedcollections'><button className='nav-button'>Likes</button></CustomLink>
           <CustomLink to='/logout'><button className='nav-button'>Log Out</button></CustomLink>
         </ul>
       </nav>

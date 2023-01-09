@@ -12,7 +12,6 @@ export default function WorkoutForm({ group, id }) {
 
   const { collection, setCollection } = useContext(CollectionContext);
   const [collectionState, setCollectionState] = useState([]);
-  const [error, setError] = useState(null);
 
   async function sendWorkout(e) {
     e.preventDefault();
@@ -21,36 +20,27 @@ export default function WorkoutForm({ group, id }) {
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
     const sets = useSetsRef.current.value;
-
-    const workout = {workouts: {name: name, weight: weight, reps: reps, sets: sets, workoutID: nanoid()}, groupID: id};
-    setCollectionState(workout);
+    const workout = {name: name, weight: weight, reps: reps, sets: sets, workoutID: nanoid()}
+    const workoutFetch = {workouts: workout, groupID: id};
 
     // Sends a post request to the backend api to add the workout to the db
-    const response = fetch('http://localhost:4000/api/collections/newworkout', {
+    const response = await fetch('http://localhost:4000/api/collections/newworkout', {
       method: 'PUT',
-      body: JSON.stringify(workout),
+      body: JSON.stringify(workoutFetch),
       headers: {
         'Content-Type': 'application/json'
       }
     });
+    const json = await response.json();
 
-    const json =  await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-    }
     if (response.ok) {
-      useNameRef.current.value = null;
-      useWeightRef.current.value = null;
-      useRepsRef.current.value = null;
-      useSetsRef.current.value = null;
-      setError(null);
+      setCollectionState(workout);
     }
   };
 
   // Everytime the workoutState is changed it updates the global context to match
   useEffect(() => {
-    return setCollection([...collection, collectionState]);
+    setCollection([...collection, collectionState]);
   }, [collectionState]);
 
   return (
@@ -69,7 +59,6 @@ export default function WorkoutForm({ group, id }) {
         <input ref={useSetsRef} type='number' required/>
 
         <button type='submit'>Create Workout</button>
-        {error && <div className='error'>{error}</div>}
       </form>
     </>
   )

@@ -12,7 +12,6 @@ function WorkoutPage() {
   const { collection, setCollection } = useContext(Context);
   const { group, id } = useParams();
   const { setSession } = useContext(SessionContext);
-  const active = false;
   useEffect(() => {
     const sessionStorage = localStorage.getItem('session');
     const user = JSON.parse(sessionStorage);
@@ -36,13 +35,14 @@ function WorkoutPage() {
         setCollection(workouts.workouts);
       }
     })
+    console.log(collection)
   }, [collection])
 
   return (
     <>
       <UserNavbar/>
       <div className='user-container'>
-        <LikeButton active={active}/>
+        <LikeButton/>
         <WorkoutList/>
         <WorkoutForm id={id} group={group}/>
       </div>
