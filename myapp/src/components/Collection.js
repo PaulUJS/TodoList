@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
+import Delete from './Delete';
 
 function Collection({ collection }) {
+  
+
   return (
     <>
-      <form className='collection-container'>
-        <CustomLink to={`/collection/${collection.group}/${collection.groupID}`}>
-          <button type='submit'>
-            <h2>{collection.group}</h2>
-            <p>Workout Type: {collection.type}</p>
-            <p>Collection ID: {collection.groupID}</p>
-            <p>Created By: {collection.username} </p>
-            <p>{collection.likes} Likes</p>
-          </button>
-        </CustomLink>
-      </form>
+      <div className='collection-container'>
+        <h2>{collection.group}</h2>
+        <p>Workout Type: {collection.type}</p>
+        <p>Collection ID: {collection.groupID}</p>
+        <p>Created By: {collection.username} </p>
+        <p>{collection.likes} Likes</p>
+        <div className='buttons'>
+          <Delete/>
+          <CustomLink to={`/collection/${collection.group}/${collection.groupID}`}><button className='workouts-btn'>See Workouts</button></CustomLink>
+        </div>
+      </div>
     </>
   )
 }

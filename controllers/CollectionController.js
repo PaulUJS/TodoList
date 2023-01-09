@@ -5,19 +5,18 @@ const mongoose = require('mongoose');
 async function createCollection(req,res) {
   const {group, type, groupID, userID, username, likes} = req.body;
 
-  // adds workout to db
-  try {
+  if (group.length < 6) {
+    res.status(400).json({error: 'collection name must be atleast 6 characters'});
+  } else {
     const workout = await Workout.create({group, type, groupID, userID, username, likes});
     res.status(200).json(workout);
-  } catch (error) {
-    res.status(400).json({error: error.message});
   }
-};
+}
 
 // Update workout
 async function createWorkout(req,res) {
   const { workouts, groupID } = req.body;
-
+  
   // updates the workout with the matching ID with the req.body object
   const workout = await Workout.findOneAndUpdate({groupID: groupID}, {
     $push: {workouts: workouts}

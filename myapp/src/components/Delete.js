@@ -16,7 +16,7 @@ function Delete({ workouts }) {
     }
   }
   return (
-        <form onSubmit={deleteWorkout}>
+        <form className='del-form' onSubmit={deleteWorkout}>
           <button type='submit'>Delete</button>
         </form>
   )

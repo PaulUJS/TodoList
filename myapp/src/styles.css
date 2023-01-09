@@ -393,7 +393,7 @@ a:hover {
   gap: 1rem;
 
   grid-template-columns: repeat(2, 600px);
-  grid-template-rows: repeat(auto-fit, 250px);
+  grid-template-rows: repeat(auto-fit, 400px);
   min-height: 100vh;
   min-width: 100vh;
 
@@ -556,12 +556,48 @@ a:hover {
   grid-column-end: 2;
 
   margin: 15px;
-  border-style: none;
 
-  height: 200px;
+  border: 1px solid black;
+
+  height: 350px;
   width: 600px;
 
   background-color: white;
+}
+
+.buttons {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 600px;
+  flex-direction: row;
+}
+
+.del-form {
+  width: 150px;
+  height: 35px;
+}
+
+.del-form button {
+  width: 125px;
+  height: 25px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.buttons a {
+  display: contents;
+}
+
+.buttons li {
+  display: contents;
+}
+
+.workouts-btn {
+  height: 25px;
+  width: 125px;
+  align-self: flex-end;
+  margin-right: 10px;
 }
 
 .collection-container h2 {
@@ -571,17 +607,6 @@ a:hover {
 .collection-container p {
   margin-left: 35px;
   margin-bottom: 20px;
-}
-
-.collection-container button {
-  display: flex;
-
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  height: 250px;
-  width: 600px;
-  background-color: white;
 }
 
 .collection-container a {
@@ -713,4 +738,11 @@ a:hover {
   width: 325px;
   height: 35px;
   text-align: center;
+}
+
+.collection-delete {
+  align-self: flex-end;
+  margin-right: 10px;
+  width: 150px;
+  padding: 0;
 }
