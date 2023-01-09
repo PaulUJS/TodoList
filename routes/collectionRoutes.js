@@ -31,7 +31,7 @@ router.put('/removelike', removeLike);
 
 router.put('/editworkout', editWorkout);
 
-router.delete('/deleteworkout/:workoutID', deleteWorkout);
+router.put('/deleteworkout/:workoutID', deleteWorkout);
 
 router.delete('/:groupID', deleteCollection);
 

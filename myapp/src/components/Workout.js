@@ -13,7 +13,7 @@ export default function Workout({ workout }) {
     return (
       <>
         <div className='workout-container'>
-          <Delete/>
+          <Delete workouts={workout.workoutID}/>
           <button className='edit-button'  onClick={() => setIsShown(!isShown)}>Edit</button>
           <h2>{workout.name}</h2>
           <label className='workout-label'>Weight: {workout.weight} (lbs)</label>

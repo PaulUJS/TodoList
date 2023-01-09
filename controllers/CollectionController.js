@@ -101,6 +101,9 @@ async function editWorkout(req,res) {
 
 async function deleteWorkout(req,res) {
   const { workoutID } = req.params;
+
+  const workout = await Workout.updateOne({"workouts.workoutID": workoutID}, {$pull: {workouts: {workoutID: workoutID}}})
+  return res.status(200).json(workout);
 }
 
 module.exports = {

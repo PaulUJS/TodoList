@@ -9,8 +9,7 @@ function Edit({ workouts }) {
   const useRepsRef = useRef();
   const useSetsRef = useRef();
 
-  async function editWorkout(e) {
-    e.preventDefault();
+  async function editWorkout() {
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
@@ -26,7 +25,7 @@ function Edit({ workouts }) {
     })
     const json = await response.json();
     if (response.ok) {
-      console.log(json)
+      return
     }
   }
 
@@ -45,7 +44,7 @@ function Edit({ workouts }) {
 
       <label>Amount of Sets</label>
       <input ref={useSetsRef} type='number' required/>
-      <button onClick={editWorkout} type='submit'>Edit</button>
+      <button type='submit'>Edit</button>
     </form>
   )
 }
