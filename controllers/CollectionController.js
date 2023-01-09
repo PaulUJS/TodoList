@@ -11,12 +11,12 @@ async function createCollection(req,res) {
     const workout = await Workout.create({group, type, groupID, userID, username, likes});
     res.status(200).json(workout);
   }
-}
+};
 
 // Update workout
 async function createWorkout(req,res) {
   const { workouts, groupID } = req.body;
-  
+
   // updates the workout with the matching ID with the req.body object
   const workout = await Workout.findOneAndUpdate({groupID: groupID}, {
     $push: {workouts: workouts}

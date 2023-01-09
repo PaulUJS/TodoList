@@ -48,7 +48,7 @@ function WorkoutPage() {
       <div className='user-container'>
         <LikeButton/>
         <WorkoutList/>
-        {!isShown && <WorkoutForm/>}
+        {!isShown && <WorkoutForm group={group} id={id}/>}
       </div>
     </>
   )

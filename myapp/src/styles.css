@@ -393,7 +393,7 @@ a:hover {
   gap: 1rem;
 
   grid-template-columns: repeat(2, 600px);
-  grid-template-rows: repeat(auto-fit, 400px);
+  grid-template-rows: repeat(auto-fit, 350px);
   min-height: 100vh;
   min-width: 100vh;
 
@@ -573,18 +573,6 @@ a:hover {
   flex-direction: row;
 }
 
-.del-form {
-  width: 150px;
-  height: 35px;
-}
-
-.del-form button {
-  width: 125px;
-  height: 25px;
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
 .buttons a {
   display: contents;
 }
@@ -597,7 +585,7 @@ a:hover {
   height: 25px;
   width: 125px;
   align-self: flex-end;
-  margin-right: 10px;
+  margin-left: 10px;
 }
 
 .collection-container h2 {
@@ -745,4 +733,45 @@ a:hover {
   margin-right: 10px;
   width: 150px;
   padding: 0;
+}
+
+.workout-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.edit-button {
+  width: 125px;
+  height: 25px;
+  margin-right: 10px;
+  margin-top: 10px;
+  align-self: flex-end;
+}
+
+.del-form {
+  width: 125px;
+  height: 25px;
+}
+
+.del-form button {
+  width: 125px;
+  height: 25px;
+  margin-left: 10px;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.del-col {
+  width: 125px;
+  height: 25px;
+  align-self: flex-end;
+  margin-right: 10px;
+}
+
+.del-col button {
+  height: 25px;
+  width: 125px;
+  align-self: flex-end;
+  margin-right: 10px;
 }

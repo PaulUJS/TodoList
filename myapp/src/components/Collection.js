@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
-import Delete from './Delete';
+import DelCollection from './DelCollection';
 
 function Collection({ collection }) {
   
@@ -14,8 +14,8 @@ function Collection({ collection }) {
         <p>Created By: {collection.username} </p>
         <p>{collection.likes} Likes</p>
         <div className='buttons'>
-          <Delete/>
           <CustomLink to={`/collection/${collection.group}/${collection.groupID}`}><button className='workouts-btn'>See Workouts</button></CustomLink>
+          <DelCollection collection={collection.groupID}/>
         </div>
       </div>
     </>
