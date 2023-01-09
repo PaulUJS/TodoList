@@ -12,7 +12,7 @@ function SearchPage() {
 			<div className='user-container'>
 				<CollectionList/>
 				<SearchBar/>
-        		<div className='custom-link'>
+        <div className='search-btn'>
 					<CustomLink to='/typesearch'><p>Search By Collection Type</p></CustomLink>
 				</div>
 			</div>

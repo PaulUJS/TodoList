@@ -11,31 +11,26 @@ function Edit({ workouts }) {
 
   async function editWorkout(e) {
     e.preventDefault();
-    console.log(workouts)
     const name = useNameRef.current.value;
     const reps = useWeightRef.current.value;
     const weight = useRepsRef.current.value;
     const sets = useSetsRef.current.value;
-    const workout = {workouts: {name: name, weight: weight, reps: reps, sets: sets}, workoutID: workouts.workoutID, groupID: collection.groupID};
-    setCollectionState(workout);
+    const workoutFetch = {workouts: {name: name, weight: weight, reps: reps, sets: sets}, workoutID: workouts.workoutID, groupID: collection.groupID};
 
     const response = await fetch('http://localhost:4000/api/collections/editworkout', {
       method: 'PUT',
-      body: JSON.stringify(workout),
+      body: JSON.stringify(workoutFetch),
       headers: {
         'Content-Type': 'application/json'
       }
     })
     const json = await response.json();
-
     if (response.ok) {
-      useNameRef.current.value = null;
-      useWeightRef.current.value = null;
-      useRepsRef.current.value = null;
-      useSetsRef.current.value = null;
-      return setCollection([...collection, collectionState]);
+      console.log(json)
     }
   }
+
+  
 
   return (
     <form className='edit-form' onSubmit={editWorkout}>

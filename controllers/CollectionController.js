@@ -93,12 +93,9 @@ async function removeLike(req,res) {
 async function editWorkout(req,res) {
   const { workouts, workoutID, groupID } = req.body;
 
-  const workout = await Workout.findOneAndUpdate(
-    {workouts: {workoutID: workoutID},
-    $set: {'workouts.name': workouts.name, 'workouts.weight': workouts.weight, 'workouts.reps': workouts.reps, 'workouts.sets': workouts.sets}   
+  const workout = await Workout.findOneAndUpdate({"workouts.workoutID": workoutID}, {
+    $set: {"workouts.$.name": workouts.name, "workouts.$.weight": workouts.weight, "workouts.$.reps": workouts.reps, "workouts.$.sets": workouts.sets} 
   })
-  const updatedWorkout = await Workout.updateOne()
-  
   return res.status(200).json(workout);
 }
 

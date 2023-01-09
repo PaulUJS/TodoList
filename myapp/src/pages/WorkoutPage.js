@@ -35,7 +35,6 @@ function WorkoutPage() {
         setCollection(workouts.workouts);
       }
     })
-    console.log(collection)
   }, [collection])
 
   return (

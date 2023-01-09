@@ -668,3 +668,49 @@ a:hover {
   margin-left: 35px;
   margin-bottom: 20px;
 }
+
+.search-btn {
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 350px;
+  background-color: white;
+  margin: 15px;
+  width: 325px;
+  height: 50px
+
+}
+
+.search-btn a :hover {
+  text-decoration: underline;
+}
+
+.search-btn li {
+  width: 325px;
+  height: 50px;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 350px;
+  margin: 15px;
+  text-align: center;
+}
+
+.search-btn a {
+  width: 325px;
+  height: 50px;
+  align-self: center;
+  justify-self: center;
+  margin: 0;
+}
+
+
+.search-btn p {
+  position: fixed;
+  z-index: 1;
+  right: 15px;
+  top: 350px;
+  width: 325px;
+  height: 35px;
+  text-align: center;
+}
