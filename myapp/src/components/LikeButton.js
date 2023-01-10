@@ -9,20 +9,17 @@ function LikeButton() {
   const sessionStorage = localStorage.getItem('session');
   const user = JSON.parse(sessionStorage);
   let likes = JSON.parse(localStorage.getItem('likes'));
-
   let likedBy = [];
 
+
+
   useEffect(() => {
-    if (likes.length > 0) {
-      likedBy = likes[0].likedBy;
-      if (likedBy.includes(user._id)) {
-        console.log('includes')
-      } else {
-        console.log('excluded')
+    if (likes != null) {
+      if (likes.length > 0) {
+        likedBy = likes[0].likedBy
       }
     }
-
-  }, [collection])
+  }, [likes])
 
   async function fetchAPIAdd(method, body, url) {
     const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
