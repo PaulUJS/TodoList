@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Registration() {
 
@@ -7,8 +8,10 @@ export default function Registration() {
   const displayNameRef = useRef();
 
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
-  async function registerUser() {
+  async function registerUser(e) {
+    e.preventDefault();
     const email = emailRef.current.value;
     const pass = passRef.current.value;
     const displayName = displayNameRef.current.value;
@@ -26,6 +29,7 @@ export default function Registration() {
     const json =  await response.json();
 
     if (!response.ok) {
+      alert(json.error)
       setError(json.error);
     }
     if (response.ok) {
@@ -33,6 +37,7 @@ export default function Registration() {
       passRef.current.value = null;
       displayNameRef.current.value = null;
       setError(null);
+      navigate('/signin');
     }
   };
 
@@ -48,7 +53,6 @@ export default function Registration() {
         <label>Enter your Password</label>
           <input ref={passRef} type='password' placeholder='Password' className='password' required />
         <button type='submit'>Register</button>
-        {error && <div className='error'>{error}</div>}
       </form>
     </div>  
   </>
