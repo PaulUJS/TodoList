@@ -14,17 +14,19 @@ export default function Workout({ workout }) {
   
   return (
     <>
-      <div className='workout-container'>
-        <h2>{workout.name}</h2>
-        <label className='workout-label'>Weight: {workout.weight} (lbs)</label>
-        <label className='workout-label'>Exercise Reps: {workout.reps}</label>
-        <label className='workout-label'>Exercise Sets: {workout.sets}</label>
-        <div className='workout-btns'>
-          <Delete workouts={workout.workoutID}/>
-          <button className='edit-button'  onClick={() => setIsShown(!isShown)}>Edit</button>
+      <div className='workout-wrapper'>
+        <div className='workout-container'>
+          <h2>{workout.name}</h2>
+          <label className='workout-label'>Weight: {workout.weight} (lbs)</label>
+          <label className='workout-label'>Exercise Reps: {workout.reps}</label>
+          <label className='workout-label'>Exercise Sets: {workout.sets}</label>
+          <div className='workout-btns'>
+            <Delete workouts={workout.workoutID}/>
+            <button className='edit-button'  onClick={() => setIsShown(!isShown)}>Edit</button>
+          </div>
         </div>
+        {isShown && <Edit workouts={workouts}/>}
       </div>
-      {isShown && <Edit workouts={workouts}/>}
     </>
   )
 }

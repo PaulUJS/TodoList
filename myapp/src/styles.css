@@ -392,7 +392,7 @@ a:hover {
   display: grid;
   gap: 1rem;
 
-  grid-template-columns: repeat(2, 600px);
+  grid-template-columns: repeat(4, 300px);
   grid-template-rows: repeat(auto-fit, 350px);
   min-height: 100vh;
   min-width: 100vh;
@@ -425,45 +425,13 @@ a:hover {
   grid-row: 2;
 
   border: none;
-  width:100px;
-  height: 100px;
+  height: 50px;
+	width: 50px;
 	transform: rotate(-45deg) scale(1);
-	animation: pulse 1s linear infinite;
+  
+  background-color: red;
 }
 
-@keyframes pulse {
-	0% {
-		transform: rotate(-45deg) scale(1);
-	}
-	
-	10% {
-		transform: rotate(-45deg) scale(1.1);
-	}
-	
-	20% {
-		transform: rotate(-45deg) scale(0.9);
-	}
-	
-	30% {
-		transform: rotate(-45deg) scale(1.2);
-	}
-
-	40% {
-		transform: rotate(-45deg) scale(0.9);
-	}
-
-	50% {
-		transform: rotate(-45deg) scale(1.05);
-	}
-
-	60% {
-		transform: rotate(-45deg) scale(0.95);
-	}
-
-	70% {
-		transform: rotate(-45deg) scale(1);
-	}
-}
 
 .like-button::after {
 	background: inherit;
@@ -473,8 +441,8 @@ a:hover {
 	position: absolute;
 	top: -50%;
 	left: 0;
-	height: 100px;
-	width: 100px;
+	height: 50px;
+	width: 50px;
 }
 
 .like-button::before {
@@ -485,8 +453,8 @@ a:hover {
 	position: absolute;
 	top: 0;
 	right: -50%;
-	height: 100px;
-	width: 100px;
+	height: 50px;
+	width: 50px;
 }
 
 /* CollectionForm Component */
@@ -661,7 +629,7 @@ a:hover {
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-start;
-  grid-column: 2;
+  grid-column: 3;
 
   border: 0.5px solid black;
   margin: 15px;
@@ -774,4 +742,33 @@ a:hover {
   width: 125px;
   align-self: flex-end;
   margin-right: 10px;
+}
+
+.edit-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 250px;
+  height: 250px;
+  border: 1px solid black;
+  margin-top: 15px;
+  grid-column: 2;
+}
+
+.workout-wrapper {
+  display: flex;
+
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  margin: 15px;
+
+  height: 250px;
+  width: 900px;
+
+  background-color: white;
 }

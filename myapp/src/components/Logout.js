@@ -7,7 +7,7 @@ function Logout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.removeItem('session');
+    localStorage.clear();
     setSession(null);
     navigate('/');
   }, [])

@@ -49,11 +49,11 @@ export default function WorkoutForm({ group, id }) {
         <label>Exercise name</label>
         <input ref={useNameRef} type='text' required/>
 
-        <label>Amount of Reps</label>
-        <input ref={useWeightRef} type='number' required/>
-
         <label>Weight(lbs)</label>
         <input ref={useRepsRef} type='number' required/>
+
+        <label>Amount of Reps</label>
+        <input ref={useWeightRef} type='number' required/>
 
         <label>Amount of Sets</label>
         <input ref={useSetsRef} type='number' required/>

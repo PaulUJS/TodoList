@@ -23,8 +23,7 @@ function CollectionForm() {
     const groupName = groupNameRef.current.value;
 
     const newCollection = {group: groupName, type: workoutType, groupID: nanoid(), userID: user._id, username: user.displayName, likes: 0};
-    setCollectionState(newCollection);
-
+    
     const response = await fetch('http://localhost:4000/api/collections/newcollection', {
       method: 'POST',
       body: JSON.stringify(newCollection),
@@ -40,6 +39,7 @@ function CollectionForm() {
       console.log('error');
     }
     if (response.ok) {
+      setCollectionState(newCollection);
       groupNameRef.current.value = null;
       workoutTypeRef.current.value = null;
       setError(null); 

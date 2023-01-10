@@ -18,7 +18,8 @@ const userSchema = new Schema({
   },
   likes: {
     type: Array,
-    required: false
+    required: false,
+    unique: true
   }
 }, {timestamps: true});
 

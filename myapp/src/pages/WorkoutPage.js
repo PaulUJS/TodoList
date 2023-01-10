@@ -10,6 +10,7 @@ import LikeButton from '../components/LikeButton';
 
 function WorkoutPage() {
   const { collection, setCollection } = useContext(Context);
+  const [liked, setLiked] = useState([]);
   const [isShown, setIsShown] = useState(false)
   const { group, id } = useParams();
   const { setSession } = useContext(SessionContext);
@@ -25,7 +26,8 @@ function WorkoutPage() {
       if (response.ok) {
         setCollection(json);
         localStorage.setItem('likes', JSON.stringify(json));
-        localStorage.setItem('collection', JSON.stringify(json));
+        console.log(json)
+        setLiked(json);
         if (json.userID == JSON.stringify(user._id)) {
           setIsShown(!isShown);
         }
@@ -42,11 +44,17 @@ function WorkoutPage() {
     })
   }, [collection])
 
+  useEffect(() => {
+    liked.map(likes => {
+      setLiked(likes.likedBy)
+    })
+  }, [liked])
+  
   return (
     <>
       <UserNavbar/>
       <div className='user-container'>
-        <LikeButton/>
+        <LikeButton liked={liked}/>
         <WorkoutList/>
         {!isShown && <WorkoutForm group={group} id={id}/>}
       </div>

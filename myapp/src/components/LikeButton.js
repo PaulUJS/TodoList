@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-function LikeButton() {
+function LikeButton({liked}) {
   const { id } = useParams();
   
   const sessionStorage = localStorage.getItem('session');
   const user = JSON.parse(sessionStorage);
   let likes = JSON.parse(localStorage.getItem('likes'));
+  const [userLike, setUserLike] = useState(false);
+  let likedBy = [];
+
+  useEffect(() => {
+    console.log(liked)
+    for (let x = 0; x < likedBy.length; x++) {
+      if (likedBy[x] == user._id) {
+        setUserLike(!userLike);
+        console.log('true')
+      }
+    }
+
+  }, [])
 
   async function fetchAPIAdd(method, body, url) {
     const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
@@ -47,38 +60,35 @@ function LikeButton() {
   }
 
   async function likeButton() {
-    if (likes[0].likedBy.length == 0) {
+    for (let x = 0; x < likedBy.length; x++) {
+      if (likedBy[x] == user._id) {
+        likedBy = [user._id];
+      }
+    }
+
+    if (userLike) {
+      likes[0].likes -= 1;
+      const body = {groupID: id, likes: likes[0].likes, userID: user._id};
+      fetchAPIRemove('put', body, 'removelike');
+      likedBy = [];
+      console.log(likedBy)
+      setUserLike(!userLike)
+      alert('You have removed your like from this collection!');
+    } 
+    if (!userLike) {
       likes[0].likes += 1;
-      likes[0].likedBy = [user._id];
-      localStorage.setItem('likes', JSON.stringify(likes));
       const body = {groupID: id, likes: likes[0].likes, userID: user._id};
       fetchAPIAdd('put', body, 'newlike');
-    } else {
-      for (let x in likes[0].likedBy) {
-        console.log('for loop')
-        if (x = user._id) {
-          likes[0].likes -= 1;
-          likes[0].likedBy = [];
-          localStorage.setItem('likes', JSON.stringify(likes));
-          const body = {groupID: id, likes: likes[0].likes, userID: user._id};
-          fetchAPIRemove('put', body, 'removelike');
-        } 
-  
-        if (x != user._id) {
-          likes[0].likes += 1;
-          likes[0].likedBy = [user._id]
-          localStorage.setItem('likes', JSON.stringify(likes));
-          const body = {groupID: id, likes: likes[0].likes, userID: user._id};
-          fetchAPIAdd('put', body, 'newlike');
-        }
-      }
+      setUserLike(!userLike)
+      console.log(likedBy)
+      alert('You have liked this collection!');
     }
   }
 
   return (
     <>
       <div>
-      <button type='submit' className='like-button' onClick={likeButton}/>
+        <button type='submit' className='like-button' onClick={likeButton}/>
       </div>
     </>
   )
