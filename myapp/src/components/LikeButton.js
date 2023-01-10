@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
-function LikeButton({liked}) {
+import { Context } from '../context/CollectionContext';
+
+function LikeButton() {
   const { id } = useParams();
-  
+  const { collection, setCollection } = useContext(Context);
   const sessionStorage = localStorage.getItem('session');
   const user = JSON.parse(sessionStorage);
   let likes = JSON.parse(localStorage.getItem('likes'));
-  const [userLike, setUserLike] = useState(false);
+
   let likedBy = [];
 
   useEffect(() => {
-    console.log(liked)
-    for (let x = 0; x < likedBy.length; x++) {
-      if (likedBy[x] == user._id) {
-        setUserLike(!userLike);
-        console.log('true')
+    if (likes.length > 0) {
+      likedBy = likes[0].likedBy;
+      if (likedBy.includes(user._id)) {
+        console.log('includes')
+      } else {
+        console.log('excluded')
       }
     }
 
-  }, [])
+  }, [collection])
 
   async function fetchAPIAdd(method, body, url) {
     const response = await fetch(`http://localhost:4000/api/collections/${url}`, {
@@ -60,27 +63,19 @@ function LikeButton({liked}) {
   }
 
   async function likeButton() {
-    for (let x = 0; x < likedBy.length; x++) {
-      if (likedBy[x] == user._id) {
-        likedBy = [user._id];
-      }
-    }
-
-    if (userLike) {
+    console.log(likedBy)
+    if (likedBy.includes(user._id)) {
       likes[0].likes -= 1;
       const body = {groupID: id, likes: likes[0].likes, userID: user._id};
-      fetchAPIRemove('put', body, 'removelike');
       likedBy = [];
-      console.log(likedBy)
-      setUserLike(!userLike)
+      fetchAPIRemove('put', body, 'removelike');
       alert('You have removed your like from this collection!');
     } 
-    if (!userLike) {
+    else if (!likedBy.includes(user._id)) {
       likes[0].likes += 1;
       const body = {groupID: id, likes: likes[0].likes, userID: user._id};
+      likedBy = [user._id];
       fetchAPIAdd('put', body, 'newlike');
-      setUserLike(!userLike)
-      console.log(likedBy)
       alert('You have liked this collection!');
     }
   }
